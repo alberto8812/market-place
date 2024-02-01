@@ -11,9 +11,9 @@ export const Footer = () => {
     <div className='grid sm:grid-cols-2 grid-cols-1 justify-evenly al bg-[rgba(186,183,120,255)] w-full p-2 pb-7'>
        <div className='flex flex-col justify-center items-center mt-3'>
          <Image
-         src="/imgs/CLARA RIVERA_LOGO.jpg"
-         width={450}
-         height={300}
+         src="/imgs/marketplace-logo.png"
+         width={200}
+         height={200}
          alt=''
          />
          <div className='mt-5 flex flex-col justify-center items-center'>

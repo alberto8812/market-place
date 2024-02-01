@@ -14,7 +14,7 @@ export default function LoginPage() {
   
 
      <Image
-      src="/imgs/CLARA RIVERA_LOGO SLOGAN_Negativo Vinotinto.jpg"
+      src="/MarketPlaceLogin.png"
       width={500}
       height={500}
       alt='logo'

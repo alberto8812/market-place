@@ -15,16 +15,23 @@
 
 
 
-## Correr en prod
+## Tecnologías:
 
-## Cliente
-![Alt text](image.png)
- # #movil
-![Alt text](image-2.png)
-## Adminstrados
-![Alt text](image-1.png)
-## movil
-![Alt text](image-3.png)
+Backend:
+
+·       TypeScript
+
+·       Prisma
+
+·       Docker
+
+·       Postgres
+
+Frontend:
+
+·       TailwindCSS
+
+·       Zustand
 
 
 ## Relacion de tablas

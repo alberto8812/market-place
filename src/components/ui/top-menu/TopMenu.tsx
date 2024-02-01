@@ -8,7 +8,7 @@ import { IoSearchOutline,IoCartOutline,IoPersonCircleOutline,IoMenuOutline, IoHo
 import { TopMenuItem } from '../top-menu-item/TopMenuItem';
 import { useCartStore, useUIStore } from '@/store';
 import { FC, useEffect, useState } from 'react';
-import { Product } from '@/components/interfaces';
+
 
 
 
@@ -45,8 +45,8 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
   
   return (
     <nav className='flex flex-col justify-between items-center w-full bg-[rgba(245,245,245,255)]'>
-       <div className='flex px-5 justify-between items-center w-full pb-5 pt-2 bg-[rgba(156,34,78,255)]'>       
-            <div  className='m-2 p-2 rounded-md transition-all hover:bg-[#b76080] text-white'>
+       <div className='flex px-5 justify-between items-center w-full pb-5 pt-2 bg-color-company'>       
+            <div  className='m-2 p-2 rounded-md transition-all hover:bg-[#896bab] text-white'>
                     <IoMenuOutline   
                     className="w-10 h-10 text-cyan-50 block lg:hidden" 
                       onClick={openSidItemMovilOpen}
@@ -78,11 +78,11 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
 
           <div className='flex items-center'>
                   <Link  href="/" className='mx-2'>
-                    <IoSearchOutline  className="w-8 h-8  text-cyan-50" />
+                    <IoSearchOutline  className="w-8 h-8  text-cyan-50 hover:bg-[#896bab] rounded-sm" />
                   </Link>
 
-                  <div className='mx-2'>
-                    <IoPersonCircleOutline   className="w-8 h-8  text-cyan-50"    onClick={openSideMenu} />
+                  <div className='mx-2 '>
+                    <IoPersonCircleOutline   className="w-8 h-8  text-cyan-50 hover:bg-[#896bab] rounded-sm "    onClick={openSideMenu} />
                   </div>
 
                   <Link  href={`${(totalItemsCart>0) && (isloaded) ?'/cart':'/empty'}`} className='mx-2'>
@@ -93,13 +93,13 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
                            {totalItemsCart}
                          </span>)
                       }
-                      <IoCartOutline  className="w-8 h-8 text-cyan-50"  />
+                      <IoCartOutline  className="w-8 h-8 text-cyan-50 hover:bg-[#896bab] rounded-sm"  />
                     </div>
                   </Link>
           </div>
       </div>
       <div className='flex justify-center items-center text-center'>
-          <span className={`${titleFont.className}rounded-md transition-all hover:bg-[#b76080] font-bold text-center `} >
+          <span className={`${titleFont.className}rounded-md transition-all font-bold text-center `} >
             Envios gratis por compras superiores $100.000 COP
           </span>
       </div>

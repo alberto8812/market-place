@@ -67,3 +67,7 @@ body {
 .btn-danger {
   @apply bg-red-500 hover:bg-red-700 text-white py-2 px-4  transition-all;
 }
+
+.bg-color-company {
+  @apply bg-[rgba(96,62,133,255)]
+}

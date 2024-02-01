@@ -8,10 +8,10 @@ import { RiFacebookFill, RiInstagramLine, RiWhatsappLine } from "react-icons/ri"
 
 export const Footer = () => {
   return (
-    <div className='grid sm:grid-cols-2 grid-cols-1 justify-evenly al bg-[rgba(186,183,120,255)] w-full p-2 pb-7'>
+    <div className='grid sm:grid-cols-2 grid-cols-1 justify-evenly al bg-[rgba(240,241,243,255)] w-full p-2 pb-7'>
        <div className='flex flex-col justify-center items-center mt-3'>
          <Image
-         src="/imgs/marketplace-logo.png"
+         src="/imgs/marketplace-logo-negro.png"
          width={200}
          height={200}
          alt=''

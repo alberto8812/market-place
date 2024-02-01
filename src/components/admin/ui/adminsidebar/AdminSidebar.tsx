@@ -4,7 +4,7 @@ import { IoBarChartOutline, IoHomeOutline, IoPeopleOutline, IoSettingsOutline, I
 
 export const AdminSidebar = () => {
   return (
-    <div className="fixed flex flex-col text-white bg-[rgba(156,34,78,255)]  left-0 w-14 hover:w-64 md:w-64  dark:bg-gray-900 h-full  transition-all duration-300 border-none z-50 top-0">
+    <div className="fixed flex flex-col text-white bg-color-company left-0 w-14 hover:w-64 md:w-64  dark:bg-gray-900 h-full  transition-all duration-300 border-none z-50 top-0">
     <div className="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
       <ul className="flex flex-col py-4 space-y-1">
         <li className="px-5 hidden md:block">
@@ -17,7 +17,7 @@ export const AdminSidebar = () => {
         <li>
           <Link
             href="/"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <div className="inline-flex justify-center items-center ml-4">
             <IoHomeOutline size={30}/> 
@@ -30,7 +30,7 @@ export const AdminSidebar = () => {
         <li>
           <Link
             href="/admind/statistics"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <span className="inline-flex justify-center items-center ml-4">
               <IoBarChartOutline size={30} />
@@ -43,7 +43,7 @@ export const AdminSidebar = () => {
         <li>
           <Link
             href="/admind/products"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <span className="inline-flex justify-center items-center ml-4">
               <IoShirtOutline size={30} />
@@ -56,7 +56,7 @@ export const AdminSidebar = () => {
         <li>
           <Link
             href="/admind/orders"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <span className="inline-flex justify-center items-center ml-4">
               <IoTicketOutline size={30} />
@@ -77,7 +77,7 @@ export const AdminSidebar = () => {
         <li>
           <Link
             href="/admind/users"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <span className="inline-flex justify-center items-center ml-4">
             <IoPeopleOutline size={30} />
@@ -90,7 +90,7 @@ export const AdminSidebar = () => {
         <li>
           <a
             href="#"
-            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-blue-800 dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-blue-500 dark:hover:border-gray-800 pr-6"
+            className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
           >
             <span className="inline-flex justify-center items-center ml-4">
             <IoSettingsOutline  size={30}/>
@@ -102,7 +102,7 @@ export const AdminSidebar = () => {
         </li>
       </ul>
       <p className="mb-14 px-5 py-3 hidden md:block text-center text-xs">
-        ClaraRiver @2024
+        MP @2024
       </p>
     </div>
   </div>

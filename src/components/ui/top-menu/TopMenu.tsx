@@ -66,11 +66,11 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
             {/**  MENU  logo*/}
             <div className=''>
                 <Image
-                  src="/imgs/CLARA RIVERA_LOGO SLOGAN.png"
+                  src="/imgs/marketplace-logo.png"
                   alt='logo shop'
                   className=''
-                  width={350}
-                  height={350}
+                  width={200}
+                  height={200}
                  />
             </div>
           

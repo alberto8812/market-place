@@ -1,3 +1,5 @@
+![alt text](image-4.png)
+
 # Descripcion
  Es un  comercio electrónico permite a los consumidores comprar ropa y tecnología desde la comodidad de su hogar o oficina. Esto ahorra tiempo y esfuerzo, especialmente para las personas que no tienen tiempo o acceso a las tiendas físicas.
 
@@ -45,3 +47,5 @@ Frontend:
 7. OrderAddress tiene una relación uno a uno con Order.
 8. Otros modelos como Sizes, Comments, User, etc., también están presentes en 
 
+## Despliegue
+    url: https://market-place-bi.vercel.app

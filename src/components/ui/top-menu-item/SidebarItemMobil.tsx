@@ -94,7 +94,7 @@ export const SidebarItemMobil:FC <Props> = ({categoriesSubcategories}) => {
      {/*  */}
         <div className="border-y py-5 border-slate-300 overflow-y-auto h-full">
         <small className={`pl-3  inline-block mb-2 ${titleFont.className} text-2xl`} >
-          categorie
+          categorias
         </small>
            {
              categoriesSubcategories.map(category=>(

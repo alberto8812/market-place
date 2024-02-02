@@ -80,6 +80,7 @@ export const Sidebar = () => {
             <Link
               href={"/favorites"}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={() => closeSideMenu()}
             >
               <IoHeartOutline size={30} />
               <span className="ml-3 text-xl">Favoritos</span>
@@ -87,6 +88,7 @@ export const Sidebar = () => {
             <Link
               href="/orders"
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={() => closeSideMenu()}
             >
               <IoTicketOutline size={30} />
               <span className="ml-3 text-xl">Ordenes</span>
@@ -97,6 +99,7 @@ export const Sidebar = () => {
           <Link
             href={"/auth/login"}
             className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+            onClick={() => closeSideMenu()}
           >
             <IoLogInOutline size={30} />
             <span className="ml-3 text-xl">Ingresar</span>
@@ -106,6 +109,7 @@ export const Sidebar = () => {
           <Link
             href={"/"}
             className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+            onClick={() => closeSideMenu()}
           >
             <IoLogOutOutline size={30} />
             <span className="ml-3 text-xl" onClick={() => logOut()}>
@@ -122,6 +126,7 @@ export const Sidebar = () => {
             <Link
               href={"/admind/statistics"}
               className="flex items-center mt-10 p-2 hover:bg-gray-100 rounded transition-all"
+              onClick={() => closeSideMenu()}
             >
               <IoPeopleOutline size={30} />
               <span className="ml-3 text-xl">Area Administrador</span>

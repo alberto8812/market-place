@@ -59,7 +59,7 @@ export const ProductCardHome:FC <Props> = ({product}) => {
               </div>
             <div className="mt-6 px-5 pb-3 pt-5 h-60 ">
               <Link href={`/product/${product.slug}`}>
-                  <h5 className={`text-xl tracking-tight text-slate-900 ${titleFont.className} hover:underline hover:text-blue-500` }>{title.length>20?title.slice(0,20)+'...':title}</h5>
+                  <h5 className={`text-xl  tracking-tight text-slate-900  ${titleFont.className} hover:underline hover:text-blue-500` }>{title.length>20?title.slice(0,20)+'...':title}</h5>
               </Link>
               <div className="mt-2 mb-5 flex flex-col items-start justify-between">
                 <div className="flex items-center">

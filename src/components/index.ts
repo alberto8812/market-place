@@ -17,6 +17,7 @@ export { Title } from "./ui/title/Title";
 
 {/*product */}
 
+
 export { SizeSelector } from "./product/size-selector/SizeSelector";
 export { ProductCardHome } from "./product/productCardhome/ProductCardHome";
 export { ProductMobileSlideshow } from "./product/slidesshow/ProductMobileSlideshow";
@@ -24,6 +25,7 @@ export { ProductSlideshow } from "./product/slidesshow/ProductSlideshow";
 export { QuantitySelector } from "./product/quantity-selector/QuantitySelector";
 export { StokcLabel } from "./product/stock-label/StockLabel";
 export { ProductImage } from "./product/product-image/ProductImage";
+export { CardFavorite } from "./product/productCardhome/CardFavorite";
 
 
 {/*paypal buttons */}

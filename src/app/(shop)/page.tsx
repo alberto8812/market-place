@@ -13,7 +13,7 @@ export default async function Home() {
 
 
   return (
-    <div className="">
+    <>
      <SlideShowImage/>
 
      
@@ -51,6 +51,6 @@ export default async function Home() {
       }
       
      </div>
-    </div>
+    </>
   )
 }

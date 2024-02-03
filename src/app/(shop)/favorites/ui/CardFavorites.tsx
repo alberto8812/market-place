@@ -61,11 +61,11 @@ export const CardFavorites = () => {
               <div className="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5">
                 
                 <h2 className="text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl">
-                 {product.title}
+                 {product.title.length>25? product.title.slice(0,20) + ' ...':product.title}
                 </h2>
                 <p className="mt-2 text-lg">{currencyFormat(product.price)}</p>
                 <p className="mt-4 mb-8 max-w-md text-gray-500">
-                  {product.description.split('.')[0]}
+                  {product.description.length>80 ? product.description.slice(0,80) + '...':product.description}
                 </p>
                 <div className="flex justify-between">
                     <Link

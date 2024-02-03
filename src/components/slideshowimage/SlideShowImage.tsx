@@ -26,7 +26,7 @@ const spanStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
-    height: 'h-fit',
+    height: '800px',
     width:'80hw'
     
   }
@@ -84,7 +84,7 @@ export const SlideShowImage = () => {
           <Image
                   src={`${slideImage.url}`}
                   alt={`${slideImage.caption}`}
-                  className='w-full '
+                  className='w-full h-7 '
                   width={900}
                   height={900}
                   style={divStyle}

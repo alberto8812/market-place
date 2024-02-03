@@ -26,7 +26,7 @@ const spanStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
-    height: '800px',
+    height: '900px',
     width:'80hw'
     
   }
@@ -62,7 +62,7 @@ export const SlideShowImage = () => {
   
 
   return (
-   <div className='h-[500px]'>
+   <div className='h-2'>
     <Swiper
     spaceBetween={30}
     centeredSlides={true}
@@ -84,9 +84,9 @@ export const SlideShowImage = () => {
           <Image
                   src={`${slideImage.url}`}
                   alt={`${slideImage.caption}`}
-                  className='w-full h-7 '
-                  width={900}
-                  height={900}
+                  //className='w-full'
+                  width={300}
+                  height={300}
                   style={divStyle}
                   
                  />       

@@ -1,7 +1,7 @@
 "use client";
 import { getFavoritesProduct } from "@/actions";
 import { titleFont } from "@/app/config/fonts";
-import { ProductImage } from "@/components";
+import { CardFavorite, ProductImage } from "@/components";
 import { Product } from "@/components/interfaces";
 import { useFavoritesStore } from "@/store";
 import { currencyFormat } from "@/util";
@@ -78,16 +78,7 @@ export const CardFavorites = () => {
                         Comprar
                     </h5>
                     </Link>
-                    <div  
-                    className="cursor-pointer"
-                    >
-                        {
-                        favoritesProduct.includes(product.id) 
-                        ? ( <IoHeart   size={40} className="m-2 text-red-600" onClick={()=>onClickFavorites(product.id,false)}/> )
-                        :( <IoHeartOutline  size={40} className="m-2 text-red-600"  onClick={()=>onClickFavorites(product.id,true)}/> )
-                        } 
-                       
-                    </div>
+                    <CardFavorite id={product.id}/>
                 </div>
               </div>
               <div className="order-first ml-auto h-48 w-full bg-gray-700 sm:order-none sm:h-auto sm:w-1/2  lg:w-2/5" >

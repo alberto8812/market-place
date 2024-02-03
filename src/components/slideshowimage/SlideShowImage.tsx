@@ -26,7 +26,7 @@ const spanStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
-    height: '900px',
+    height: '600px',
     width:'80hw'
     
   }
@@ -62,7 +62,7 @@ export const SlideShowImage = () => {
   
 
   return (
-   <div className='h-2'>
+   <div className='h-fit'>
     <Swiper
     spaceBetween={30}
     centeredSlides={true}
@@ -76,6 +76,12 @@ export const SlideShowImage = () => {
     navigation={true}
    // className='w-fit bg-red-500'
     modules={[Autoplay, Pagination, Navigation]}
+
+    style={
+      {
+        height:'600px'
+      }
+    }
    
   >
    
@@ -85,8 +91,8 @@ export const SlideShowImage = () => {
                   src={`${slideImage.url}`}
                   alt={`${slideImage.caption}`}
                   //className='w-full'
-                  width={300}
-                  height={300}
+                  width={900}
+                  height={900}
                   style={divStyle}
                   
                  />       

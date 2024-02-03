@@ -1,5 +1,5 @@
 'use client'
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide, useSwiperSlide } from 'swiper/react';
 import Image from 'next/image';
 
 
@@ -12,6 +12,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 
 import './slideShowImage.css';
+import { useEffect, useState } from 'react';
 
 
 const spanStyle = {
@@ -25,7 +26,7 @@ const spanStyle = {
     alignItems: 'center',
     justifyContent: 'center',
     backgroundSize: 'cover',
-    height: '600px',
+    height: '900px',
     width:'80hw'
     
   }
@@ -55,9 +56,13 @@ const slideImages = [
 
 
 export const SlideShowImage = () => {
+ 
+
+
+  
 
   return (
-
+   <div className=''>
     <Swiper
     spaceBetween={30}
     centeredSlides={true}
@@ -69,6 +74,7 @@ export const SlideShowImage = () => {
       clickable: true,
     }}
     navigation={true}
+   // className='w-fit bg-red-500'
     modules={[Autoplay, Pagination, Navigation]}
    
   >
@@ -78,9 +84,9 @@ export const SlideShowImage = () => {
           <Image
                   src={`${slideImage.url}`}
                   alt={`${slideImage.caption}`}
-                  className='w-full'
-                  width={600}
-                  height={600}
+                  //className='w-full'
+                  width={300}
+                  height={300}
                   style={divStyle}
                   
                  />       
@@ -89,7 +95,7 @@ export const SlideShowImage = () => {
  
     </Swiper>
     
-  
+    </div>
      
   )
 }

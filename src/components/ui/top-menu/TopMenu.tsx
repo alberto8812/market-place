@@ -104,8 +104,8 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
           </span>
       </div>
       <div className='bg-[rgba(211,207,184,255)] w-full flex  justify-center  items-center'>
-        <div className=' bg-[rgba(211,207,184,255)] flex-col relative items-center hidden sm:hidden md:hidden  lg:block '>
-           <ul className='flex items-center justify-center font-semibold scroll-m-5 '>
+        <div className=' bg-[rgba(211,207,184,255)] flex-col relative items-center hidden sm:hidden md:hidden  lg:block  '>
+           <ul className='flex items-center justify-center font-semibold scroll-m-5   relative h-11'>
  
               {
                  categoriesSubcategories.map(category=>(

@@ -79,7 +79,7 @@ export const SlideShowImage = () => {
 
     style={
       {
-        height:'600px'
+        height:'450px'
       }
     }
    

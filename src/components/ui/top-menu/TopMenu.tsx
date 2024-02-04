@@ -46,7 +46,7 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
   return (
     <nav className='flex flex-col justify-between items-center w-full bg-[rgba(245,245,245,255)]'>
        <div className='flex px-5 justify-between items-center w-full pb-5 pt-2 bg-color-company'>       
-            <div  className='m-2 p-2 rounded-md transition-all hover:bg-[#896bab] text-white'>
+            <div  className='m-1 p-1 rounded-md transition-all hover:bg-[#896bab] text-white'>
                     <IoMenuOutline   
                     className="w-10 h-10 text-cyan-50 block lg:hidden" 
                       onClick={openSidItemMovilOpen}
@@ -68,9 +68,9 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
                 <Image
                   src="/imgs/marketplace-logo.png"
                   alt='logo shop'
-                  className=''
-                  width={200}
-                  height={200}
+                  className=' h-16 w-16 md:h-24 md:w-24 lg:h-24 lg:w-24'
+                  width={900}
+                  height={900}
                  />
             </div>
           
@@ -78,7 +78,7 @@ export const TopMenu:FC <Props> =({categoriesSubcategories}) => {
 
           <div className='flex items-center'>
                   <Link  href="/" className='mx-2'>
-                    <IoSearchOutline  className="w-8 h-8  text-cyan-50 hover:bg-[#896bab] rounded-sm" />
+                    <IoSearchOutline  className="w-8 h-8  text-cyan-50 hover:bg-[#896bab] rounded-sm lg:block md:block hidden" />
                   </Link>
 
                   <div className='mx-2 '>

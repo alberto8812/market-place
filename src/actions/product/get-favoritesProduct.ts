@@ -48,6 +48,7 @@ export const getFavoritesProduct=async(productsIds:string[])=>{
           
         return {
             productFaborites
+            
         }
         
     } catch (error) {

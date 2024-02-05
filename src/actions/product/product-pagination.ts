@@ -90,7 +90,8 @@ export const getPaginatedProductsWithImages= async({page=1,take=12,category=''}:
         toltalPage,
         products:products.map(product=>({
             ...product,
-            images:product.productImage.map(image=>image.url)
+            images:product.productImage.map(image=>image.url),
+            priceSale:product.price * (1-(product.sale*100/100)),
         }))
         }
     }

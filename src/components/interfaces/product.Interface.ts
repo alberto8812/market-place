@@ -11,6 +11,7 @@ export interface Product {
   tags: string[];
   title: string;
   flatProduct: string;
+  sale:number
   inventory?: Inventory[];
   // type: Type;
   gender: Gender;

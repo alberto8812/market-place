@@ -21,6 +21,7 @@ export const getHomeProductsWithImages= async()=>{
                         categoryId:true,
                         subCategoryId:true,
                         flatProduct:true,
+                        sale:true,
                         productImage:{
                             take:2,
                             select:{
@@ -39,7 +40,8 @@ export const getHomeProductsWithImages= async()=>{
             name:item.name,
             product:item.Product.map(product=>({
                 ...product,
-                images:product.productImage.map(image=>image.url)
+                images:product.productImage.map(image=>image.url),
+                priceSale:product.price * (1-(product.sale*100/100)),
             }))
         }
         ))

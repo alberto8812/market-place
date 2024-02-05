@@ -27,7 +27,7 @@ export const TopMenuItem: FC<Props> = ({
  const openItemMenu=useTopMenuStore((state)=>state.openItemMenu);
  const closeItemMenu=useTopMenuStore((state)=>state.closeItemMenu);
 
-console.log(isItemMenuOpen)
+
   
   return (
     <li className=" group px-3 py-2 ">

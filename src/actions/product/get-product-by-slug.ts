@@ -44,7 +44,6 @@ export const getProductBySlug = async (slug: string) => {
         slug,
       },
     });
-
     if (!product) return null;
     return {
       ...product,

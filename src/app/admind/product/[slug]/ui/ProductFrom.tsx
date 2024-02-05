@@ -54,6 +54,7 @@ interface FormInputs {
   flatProduct: string;
   inventory: { [key: string]: {idInvetory:string,quantity:number } };
   images?: FileList;
+  sale:number;
 }
 
 
@@ -65,7 +66,7 @@ export const ProductForm = ({ product, categories }: Props) => {
   const defaultInventory: { [key: string]:{idInvetory:string,quantity:number } } = Object.fromEntries(
     sizes.map((size) =>{
       const inventoryProduct=inventory.find(data=>data.sizes===size);
-    return [size, {idInvetory:inventoryProduct?.id || '',quantity:0}]
+      return [size, {idInvetory:inventoryProduct?.id || '',quantity:0}]
 
     })
   ) ;
@@ -128,6 +129,7 @@ export const ProductForm = ({ product, categories }: Props) => {
     formData.append("gender", productToSave.gender);
     formData.append("flatProduct", productToSave.flatProduct);
     formData.append("inventory",JSON.stringify( productToSave.inventory));
+    formData.append("sale", productToSave.sale.toString());
     if (images) {
       for (let i = 0; i < images.length; i++) {
         formData.append("images", images[i]);
@@ -191,6 +193,14 @@ export const ProductForm = ({ product, categories }: Props) => {
             type="number"
             className="p-2 border rounded-md bg-gray-200"
             {...register("price", { required: true, min: 0 })}
+          />
+        </div>
+        <div className="flex flex-col mb-2">
+          <span>Oferta (%)</span>
+          <input
+            type="number"
+            className="p-2 border rounded-md bg-gray-200"
+            {...register("sale", { required: true, min: 0,max:100 })}
           />
         </div>
         <div className="flex flex-col mb-2">

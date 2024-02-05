@@ -3,7 +3,7 @@ import { GenderEnum, Product, Sizes } from "@/components/interfaces";
 import { v2 as cloudinary } from "cloudinary";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { object, z } from "zod";
+import { number, object, z } from "zod";
 cloudinary.config(process.env.CLOUDINARY_URL ?? "");
 
 const allowedSizes = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -26,6 +26,7 @@ const productSchema = z.object({
   subCategoryId: z.string().uuid(),
   gender: z.nativeEnum(GenderEnum),
   flatProduct: z.string(),
+  sale:z.coerce.number().max(100).min(0).transform(vale=>Number(vale)),
   inventory: z.object(
     Object.fromEntries(
       allowedSizes.map((size) => [
@@ -126,6 +127,7 @@ export const createupdateProduct = async (formData: FormData) => {
             tags: {
               set: tagsArray,
             },
+            sale:rest.sale/100
           },
         });
 

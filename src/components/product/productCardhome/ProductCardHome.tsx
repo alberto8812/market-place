@@ -5,12 +5,11 @@ import Link from "next/link";
 import {  IoHeart, IoHeartOutline } from "react-icons/io5";
 import { Product } from "@/components/interfaces";
 import { ProductImage } from "../product-image/ProductImage";
-import { useFavoritesStore } from "@/store";
 import { CardFavorite } from "./CardFavorite";
 
 
  interface Props {
-  product:Product
+  product:Product & {priceSale:number}
   }
 
 export const ProductCardHome:FC <Props> = ({product}) => {
@@ -40,7 +39,9 @@ export const ProductCardHome:FC <Props> = ({product}) => {
                     />
               
                   </Link>
-                    <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">39% OFF</span>
+                    {product.sale>0  &&
+                      (<span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{`${product.sale * 100}% OFF`}</span>)
+                      }
                 </div>
             <div className="mt-6 px-5 pb-3 pt-5 h-60 ">
               <Link href={`/product/${product.slug}`}>
@@ -53,8 +54,10 @@ export const ProductCardHome:FC <Props> = ({product}) => {
                 </div>
                 <div className="flex justify-between items-center w-full">
                   <p>
-                    <span className="text-3xl font-bold text-slate-900">${price}</span>
-                    <span className="text-sm text-slate-900 line-through">$699</span>
+                    <span className="text-3xl font-bold text-slate-900">${product.priceSale.toFixed(2)}</span>
+                    {product.sale>0  &&
+                    (<span className="text-sm text-slate-900 line-through">${price}</span>)
+                    }
                   </p>
                     <CardFavorite id={product.id}/>
                 </div>

@@ -24,6 +24,7 @@ export const getFavoritesProduct=async(productsIds:string[])=>{
                     categoryId:true,
                     subCategoryId:true,
                     flatProduct:true,
+                    sale:true,
                     productImage:{
                         take:1,
                         select:{

@@ -33,6 +33,8 @@ export interface CartProduct {
   inStock?:number;
   sizeId?:string;
   idInventory:string
+  sale:number,
+  priceSale:number
 //todo quitar el id  y el instock 
 }
 

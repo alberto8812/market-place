@@ -6,8 +6,8 @@ import { useCartStore } from "@/store";
 import { useEffect, useState } from "react";
 import { IoAddCircleOutline } from "react-icons/io5";
 
-interface Props {
-  product: Product;
+interface Props  {
+  product: Product & {priceSale?:number};
 }
 
 export interface selectSizeProduct {
@@ -61,6 +61,8 @@ export const AddToCart = ({ product }: Props) => {
       inStock: inStock,
       sizeId: sizeId,
       idInventory: idInventory,
+      sale:product.sale,
+      priceSale:product.priceSale ?? product.price
     };
 
     addProductToCart(cartProduct);

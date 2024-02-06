@@ -7,21 +7,26 @@ import { useFavoritesStore } from "@/store";
 import { currencyFormat } from "@/util";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { IoHeart, IoHeartOutline } from "react-icons/io5";
+
+
+interface priceSale extends Product {
+  priceSale:number ,
+}
+
 
 export const CardFavorites = () => {
   const favoritesProduct = useFavoritesStore((state) => state.favorites);
   const updateFavorite = useFavoritesStore((state) => state.updatefavorites);
   const deletefavorites = useFavoritesStore((state) => state.deletefavorites);
-  const [products, setProducts] = useState<Product[] | null>();
+  const [products, setProducts] = useState<priceSale[] | null>();
   const [loaded, setloaded] = useState(false);
 
   useEffect(() => {
     const getFavoritePraducts = async () => {
       setloaded(true);
-      const { productFaborites } = await getFavoritesProduct(favoritesProduct);
+      const { productFavorites } = await getFavoritesProduct(favoritesProduct);
       setloaded(false);
-      setProducts(productFaborites);
+      setProducts(productFavorites);
     };
     getFavoritePraducts();
   }, [favoritesProduct]);
@@ -42,11 +47,9 @@ export const CardFavorites = () => {
     return <div className="h-screen"><p>Loading...</p></div>;
   }
   if (!products) {
-    console.log(products ,1)
     return <div className="h-screen"><p>Loading...</p></div>;
   }
   if (products.length<=0) {
-    console.log(products ,1.2)
     return <div className="h-screen"><p>Loading...</p></div>;
   }
     // TODO pendiente paginar  y colocar cavoritos
@@ -63,7 +66,12 @@ export const CardFavorites = () => {
                 <h2 className="text-xl font-bold text-gray-900 md:text-2xl lg:text-4xl">
                  {product.title.length>25? product.title.slice(0,20) + ' ...':product.title}
                 </h2>
-                <p className="mt-2 text-lg">{currencyFormat(product.price)}</p>
+                <p>
+                    <span className="text-3xl font-bold text-slate-900">${product.priceSale.toFixed(2)}</span>
+                    {product.sale>0  &&
+                    (<span className="text-sm text-slate-900 line-through ml-3">${product.price}</span>)
+                    }
+                  </p>
                 <p className="mt-4 mb-8 max-w-md text-gray-500">
                   {product.description.length>80 ? product.description.slice(0,80) + '...':product.description}
                 </p>

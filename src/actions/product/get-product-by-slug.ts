@@ -48,6 +48,7 @@ export const getProductBySlug = async (slug: string) => {
     return {
       ...product,
       images: product.productImage.map((image) => image.url),
+      priceSale:product.price *(1-(product.sale/100)),
     };
   } catch (error) {
     throw new Error(" Error al obtner producto por slug");
@@ -87,6 +88,7 @@ export const getProductAdmindBySlug = async (slug: string) => {
     return {
       ...product,
       images:product.productImage.map((image) => image.url),
+      sale:product.sale * 100,
      // inventoryo:product.inventory.map(invent=>({...invent,sizes:invent.sizes.size})) 
     };
   } catch (error) {

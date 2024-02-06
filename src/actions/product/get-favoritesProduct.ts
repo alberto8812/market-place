@@ -40,14 +40,15 @@ export const getFavoritesProduct=async(productsIds:string[])=>{
                 }
             }
         );
-         const productFaborites=products.map(product=>({
+         const productFavorites=products.map(product=>({
             ...product,
-            images:product.productImage.map(image=>image.url)
+            images:product.productImage.map(image=>image.url),
+            priceSale:product.price * (1 -( product.sale/100)),
         }))
 
           
         return {
-            productFaborites
+            productFavorites
             
         }
         

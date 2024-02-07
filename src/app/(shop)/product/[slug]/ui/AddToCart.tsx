@@ -47,6 +47,7 @@ export const AddToCart = ({ product }: Props) => {
 
   const addTocart = () => {
     setPosted(true);
+   
 
     if (!sizeData.sizeId) return;
     const { size, inStock, sizeId,idInventory } = sizeData;

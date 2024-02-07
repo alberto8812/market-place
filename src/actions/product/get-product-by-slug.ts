@@ -45,10 +45,11 @@ export const getProductBySlug = async (slug: string) => {
       },
     });
     if (!product) return null;
+
     return {
       ...product,
       images: product.productImage.map((image) => image.url),
-      priceSale:product.price *(1-(product.sale/100)),
+      priceSale:product.price *(1-(product.sale)),
     };
   } catch (error) {
     throw new Error(" Error al obtner producto por slug");

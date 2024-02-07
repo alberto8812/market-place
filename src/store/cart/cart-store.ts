@@ -61,7 +61,7 @@ export const useCartStore = create<State>()(
       getSumaryInformation: () => {
         const { cart } = get();
         const subtotal = cart.reduce(
-          (subtotal, producto) => producto.quantity * producto.price + subtotal,
+          (subtotal, producto) => producto.quantity * producto.priceSale + subtotal,
           0
         );
         const tax = subtotal * 0.15;

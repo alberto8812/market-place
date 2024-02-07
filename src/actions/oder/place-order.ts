@@ -154,6 +154,7 @@ export const placeOrder = async (
                 size: p.size === undefined ? "NA" : p.size,
                 ProductId: p.productId,
                 inventoryId:p.idInventory!,
+                sale:products.find((product) => product.id === p.productId)?.sale ?? 0,
                 price:
                   products.find((product) => product.id === p.productId)
                     ?.price ?? 0,

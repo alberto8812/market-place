@@ -60,7 +60,7 @@ export const ProductsInCart = () => {
                 >
                   <p>{`${product.title}-${product.size}`}</p>
                 </Link>
-                  <p>${product.price}</p>
+                  <p>${product.priceSale.toFixed(2)}</p>
                   <QuantitySelector quantity={product.quantity} onquantityChange={(quantity)=>onchangeQuanityt(product,quantity)}/>
                   <button 
                   className="underline mt-3"

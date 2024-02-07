@@ -53,7 +53,7 @@ export default async function OrdersIdPage({ params }: Props) {
                   <p>
                     {item.prodcut.title}-{item.size}
                   </p>
-                  <p>${item.price} x 3</p>
+                  <p>${item.price} x ${item.quantity}</p>
                   <p className="font-bold">
                     Sutotal: $ {item.price * item.quantity}
                   </p>

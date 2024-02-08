@@ -16,7 +16,8 @@ export const getAllCategories = async () => {
         },
       });
   
-     
+      
+      console.log(getCategories)
    
       return getCategories
 

@@ -8,5 +8,5 @@ export interface SubCategory {
     id:string,
     name:string
     subCategory:SubCategory[],
-    image:string
+    image?:string
   }

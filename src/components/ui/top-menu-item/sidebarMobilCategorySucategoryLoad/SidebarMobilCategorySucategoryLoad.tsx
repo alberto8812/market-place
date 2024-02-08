@@ -13,7 +13,7 @@ interface SubCategory {
 interface Props {
   categoryName: string;
   subcategories: SubCategory[];
-  image: string;
+  image?: string;
 }
 
 export const SidebarMobilCategorySucategoryLoad: FC<Props> = ({

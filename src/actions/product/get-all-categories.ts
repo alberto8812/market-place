@@ -25,3 +25,24 @@ export const getAllCategories = async () => {
   }
 
 };
+
+export const getAllSubCategories = async () => {
+
+  try {
+      const getCategoriesSubCategory = await prisma.subCategory.findMany({
+        select: {
+          id: true,
+          name: true,
+        },
+      });
+  
+   
+      return getCategoriesSubCategory
+
+  } catch (error) {
+    console.log(error);
+    throw new Error('No se encontraron subvategory existentes')
+  }
+
+};
+

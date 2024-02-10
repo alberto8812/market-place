@@ -42,7 +42,7 @@ export default async function AdminStatistics() {
         <tbody>
             {categories.map((category) => (
               category.subCategory.map(subcateries=>(
-              <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100" key={category.id}>
+              <tr className="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100" key={subcateries.id + category.id}>
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {category.name}
               </td>

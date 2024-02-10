@@ -34,8 +34,8 @@ export const CreateCategorySubCategory = ({ categories }: Props) => {
 
   //todo mensaje que ensene que fue creado validar el erros
   const onSumitSubCategory = async () => {
-   
-    await createSubCategories(createSubcategory);
+   console.log(createSubcategory)
+   await createSubCategories(createSubcategory);
   };
 
   return (
@@ -49,7 +49,7 @@ export const CreateCategorySubCategory = ({ categories }: Props) => {
         >
           <option value="">[Seleccione]</option>
           {categories.map((category) => (
-            <option value={category.id} key={category.id}>
+            <option value={category.id} key={`${category.id}_${category.name}`}>
               {category.name}
             </option>
           ))}
@@ -59,7 +59,7 @@ export const CreateCategorySubCategory = ({ categories }: Props) => {
         <span>Subcategoria</span>
         <input
           className="p-2 border rounded-md bg-gray-200"
-          name="NameSubCategory"
+          name="nameSubCategory"
           onChange={(e) => onchange(e)}
         />
       </div>

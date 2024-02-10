@@ -44,8 +44,6 @@ interface createSubCategories{
 
 export const createSubCategories = async ({idCategory,nameSubCategory}:createSubCategories) => {
 
-   
-
     try {
        const createSubcategori= prisma.subCategory.create({
            data:{

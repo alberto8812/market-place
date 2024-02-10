@@ -47,13 +47,11 @@ export const createSubCategories = async ({idCategory,nameSubCategory}:createSub
    
 
     try {
-       const createSubcategori= prisma.subCategory.update({
-           where:{
-               name:nameSubCategory,
-           },
+       const createSubcategori= prisma.subCategory.create({
            data:{
+                name:nameSubCategory,
                category:{
-                   disconnect: {
+                   connect: {
                        id:idCategory
                    }
                }

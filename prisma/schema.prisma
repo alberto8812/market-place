@@ -287,12 +287,13 @@ model OrderAddress {
 model Sizes {
 
   id                String  @id @default(uuid())
-  size              Size   @unique
+  size              Size   
   inventory         Inventory[]
   sizeCategory      SizeCategory       @relation(fields: [sizeCategoryId], references: [id])
-  sizeCategoryId    String  @default("NA")
+  sizeCategoryId    String 
   garmenttype       Garmenttype       @relation(fields: [garmenttypeId], references: [id])
-  garmenttypeId     String   @default("NA")
+  garmenttypeId     String   
+ @@unique([id, sizeCategoryId, garmenttypeId], name: "unique_sizes_combination")
 
     
 

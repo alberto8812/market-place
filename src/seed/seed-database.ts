@@ -44,7 +44,7 @@ async function main() {
        data:subCategoriesData2
     });
 
-    const sizeCategoryId= await prisma.sizeCategory.create({
+    const sizeCategoryIdHombre= await prisma.sizeCategory.create({
         data:{
             name:'hombre'
         }
@@ -55,11 +55,26 @@ async function main() {
             name:'camisa'
         }
     });
+    const sizeCategoryIdMujer= await prisma.sizeCategory.create({
+        data:{
+            name:'mujer'
+        }
+    });
       
-    const NewSizes= sizes.map(size=>({...size,sizeCategoryId:sizeCategoryId.id,garmenttypeId:garmenttype.id}))
+
+
+
+
+      
+    const NewSizesHombre= sizes.map(size=>({...size,sizeCategoryId:sizeCategoryIdHombre.id,garmenttypeId:garmenttype.id}))
+    const NewSizesmujer= sizes.map(size=>({...size,sizeCategoryId:sizeCategoryIdMujer.id,garmenttypeId:garmenttype.id}))
     //crear tallas 
     await prisma.sizes.createMany({
-       data:NewSizes
+       data:NewSizesHombre
+
+    });
+    await prisma.sizes.createMany({
+       data:NewSizesmujer
 
     });
 
@@ -155,37 +170,6 @@ async function main() {
     })
 
 
-    //      //borrar//
-    //      let clothessubcategory=subCategories.filter(subcat=> subcat!='computadores' && subcat!='smartwatch' && subcat!='videojuegos' );
-    //      let clothescategory=categories.filter(subcat=> subcat!='tecnología' && subcat!='otros' && subcat!='hogar'  && subcat!='Belleza y salud'  && subcat!='mascotas');
-    
-    
-    //      const categoriesData=clothescategory.map(category=>({
-    //         name:category
-    //     }))
-    
-    //     const subCategoriesData=clothessubcategory.map(subCategory=>({
-    //         name:subCategory
-    //     }))
-    
-    
-    //     //ensayo
-    
-    //     categoriesData.forEach(async(categorie) => {
-    //         subCategoriesData.forEach(async(subcategorie) => {
-    //             console.log(subcategorie.name,categorie.name)
-    //             await prisma.subCategory.update({
-    //                 where:{id:subcategoriesMap[subcategorie.name]},
-                    
-    //             data:{
-    //                 category:{
-    //                     set:[{id:categoriesMap[categorie.name]},{id:subcategoriesMap[subcategorie.name]}],
-    //                 }
-                
-    //             }
-    //         })
-    //     })
-    // })
 
 
 

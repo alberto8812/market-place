@@ -12,6 +12,8 @@ async function main() {
         await prisma.order.deleteMany();
         await prisma.comments.deleteMany();
         await prisma.inventory.deleteMany();
+        await prisma.sizeCategory.deleteMany();
+        await prisma.garmenttype.deleteMany();
         await prisma.sizes.deleteMany();
         await prisma.userAddress.deleteMany();
         await prisma.user.deleteMany();
@@ -40,16 +42,31 @@ async function main() {
    //SUBCATEGORI
     await prisma.subCategory.createMany({
        data:subCategoriesData2
-    })
+    });
 
+    const sizeCategoryId= await prisma.sizeCategory.create({
+        data:{
+            name:'hombre'
+        }
+    });
+      
+    const garmenttype= await prisma.garmenttype.create({
+        data:{
+            name:'camisa'
+        }
+    });
+      
+    const NewSizes= sizes.map(size=>({...size,sizeCategoryId:sizeCategoryId.id,garmenttypeId:garmenttype.id}))
     //crear tallas 
     await prisma.sizes.createMany({
-       data:sizes
-    })
+       data:NewSizes
+
+    });
+
         //categorias
      await prisma.category.createMany({
         data:categoriesData2
-     })
+     });
 
 
 

@@ -1,7 +1,7 @@
 import { initialData } from "./seed";
 import prisma from "../lib/prisma";
 import { countries } from "./seed-countries";
-import { Prisma } from "@prisma/client";
+import { Prisma, Size } from '@prisma/client';
 
 async function main() {
   //1.borrar registros previos
@@ -77,6 +77,8 @@ const tupesGarment= await await prisma.garmenttype.createMany({
 
     //fin cargar Categoriesize an garment
 
+    //hombres 
+
   const sizeCategoryIdHombre = await prisma.sizeCategory.findFirst({
     where:{
       name:"hombre"
@@ -97,10 +99,229 @@ const tupesGarment= await await prisma.garmenttype.createMany({
     garmenttypeId:garmenttype?.id ?? 'NA',
   }));
 
-  //crear tallas
-  await prisma.sizes.createMany({
+ 
+  const  createCamisaHombre=await prisma.sizes.createMany({
     data: NewSizesHombre,
   });
+  
+
+  //pantalones
+
+  const garmenttypePantalonGombre = await prisma.garmenttype.findFirst({
+    where: {
+      name:"pantalon"
+    },
+  });
+
+
+
+  const NewSizesHombrePantalon = pantalonHombre.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdHombre?.id ?? 'NA', 
+    garmenttypeId:garmenttypePantalonGombre?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesHombrePantalon,
+  });
+
+  // zapatos
+  const garmenttypeZpatosGombre = await prisma.garmenttype.findFirst({
+    where: {
+      name:"zapatos"
+    },
+  });
+
+
+
+  const NewSizesHombreZapatos = zapatosHombre.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdHombre?.id ?? 'NA', 
+    garmenttypeId:garmenttypeZpatosGombre?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesHombreZapatos,
+  });
+
+
+  // fin hombres
+
+  //inicio mujeres 
+  const sizeCategoryIdMujes= await prisma.sizeCategory.findFirst({
+    where:{
+      name:"mujer"
+    }
+  })
+
+  const garmenttypeMujesCamisa = await prisma.garmenttype.findFirst({
+    where: {
+      name:"camisa"
+    },
+  });
+
+
+
+  const NewSizesMujer = camisaMujer.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdMujes?.id ?? 'NA', 
+    garmenttypeId:garmenttypeMujesCamisa?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesMujer,
+  });
+  
+
+  //pantalones
+
+  const garmenttypePantalonMujer = await prisma.garmenttype.findFirst({
+    where: {
+      name:"pantalon"
+    },
+  });
+
+
+
+  const NewSizesHombreMujer = pantalonMujer.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdMujes?.id ?? 'NA', 
+    garmenttypeId:garmenttypePantalonMujer?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesHombreMujer,
+  });
+
+  // zapatos
+  const garmenttypeZpatosMujer = await prisma.garmenttype.findFirst({
+    where: {
+      name:"zapatos"
+    },
+  });
+
+
+
+  const NewSizesMujerZapatos = zapatosMujer.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdMujes?.id ?? 'NA', 
+    garmenttypeId:garmenttypeZpatosMujer?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesMujerZapatos,
+  });
+
+
+  //fin mujeres
+
+  //kids
+  const sizeCategoryIdKids= await prisma.sizeCategory.findFirst({
+    where:{
+      name:"kids"
+    }
+  })
+
+  const garmenttypeKidsCamisa = await prisma.garmenttype.findFirst({
+    where: {
+      name:"camisa"
+    },
+  });
+
+
+
+  const NewSizesKids = camisaKids.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdKids?.id ?? 'NA', 
+    garmenttypeId:garmenttypeKidsCamisa?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesKids,
+  });
+  
+
+  //pantalones
+
+  const garmenttypePantalonKids = await prisma.garmenttype.findFirst({
+    where: {
+      name:"pantalon"
+    },
+  });
+
+
+
+  const NewSizesHombreKids = pantalonKids.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdKids?.id ?? 'NA', 
+    garmenttypeId:garmenttypePantalonKids?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesHombreKids,
+  });
+
+  // zapatos
+  const garmenttypeZpatosKis = await prisma.garmenttype.findFirst({
+    where: {
+      name:"zapatos"
+    },
+  });
+
+
+
+  const NewSizesKidsZapatos = zapatosKids.map((size) => ({
+    ...size,
+    sizeCategoryId:sizeCategoryIdKids?.id ?? 'NA', 
+    garmenttypeId:garmenttypeZpatosKis?.id ?? 'NA',
+  }));
+
+ 
+  await prisma.sizes.createMany({
+    data: NewSizesKidsZapatos,
+  });
+
+
+
+  //fin kids
+
+  //NA
+  const sizeCategoryIdnA= await prisma.sizeCategory.findFirst({
+    where:{
+      name:"NA"
+    }
+  })
+
+  const garmenttypeNA = await prisma.garmenttype.findFirst({
+    where: {
+      name:"NA"
+    },
+  });
+
+
+ 
+  await prisma.sizes.create({
+    data: {
+      size:'NA',
+      sizeCategoryId:sizeCategoryIdnA?.id ?? 'NA', 
+      garmenttypeId:garmenttypeNA?.id ?? 'NA',
+
+    },
+  });
+  
+
+  //FIN NA
+
+
+
+// repetir
 
   //categorias
   await prisma.category.createMany({
@@ -115,7 +336,17 @@ const tupesGarment= await await prisma.garmenttype.createMany({
   }, {} as Record<string, string>);
 
   //conseguir id se las tallas
-  const sizesDB = await prisma.sizes.findMany();
+  const sizesDB = await prisma.sizes.findMany({
+    where:{
+      sizeCategory:{
+        name:'hombre'
+      },
+      garmenttype:{
+        name:'camisa'
+      }
+    }
+  });
+
 
   const sizesMap = sizesDB.reduce((map, size) => {
     map[size.size] = size.id;

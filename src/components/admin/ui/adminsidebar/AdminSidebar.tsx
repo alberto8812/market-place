@@ -5,6 +5,7 @@ import {
   IoDuplicateOutline,
   IoHomeOutline,
   IoPeopleOutline,
+  IoScaleOutline,
   IoSettingsOutline,
   IoShirtOutline,
   IoTicketOutline,
@@ -27,7 +28,7 @@ export const AdminSidebar = () => {
               href="/"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <div className="inline-flex justify-center items-center ml-4">
+              <div className="inline-flex justify-center items-center ml-1">
                 <IoHomeOutline size={30} />
               </div>
               <span className="ml-2 text-sm tracking-wide truncate">Home</span>
@@ -38,7 +39,7 @@ export const AdminSidebar = () => {
               href="/admind/statistics"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoBarChartOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">
@@ -51,7 +52,7 @@ export const AdminSidebar = () => {
               href="/admind/products"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoShirtOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">
@@ -61,10 +62,23 @@ export const AdminSidebar = () => {
           </li>
           <li>
             <Link
+              href="/admind/sizes"
+              className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
+            >
+              <span className="inline-flex justify-center items-center ml-1">
+                <IoScaleOutline  size={30} />
+              </span>
+              <span className="ml-2 text-sm tracking-wide truncate">
+               Crear Tallas
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/admind/categories"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoDuplicateOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">
@@ -77,7 +91,7 @@ export const AdminSidebar = () => {
               href="/admind/orders"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoTicketOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">
@@ -98,7 +112,7 @@ export const AdminSidebar = () => {
               href="/admind/users"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoPeopleOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">
@@ -111,7 +125,7 @@ export const AdminSidebar = () => {
               href="#"
               className="relative flex flex-row items-center h-11 focus:outline-none hover:bg-[#896bab] dark:hover:bg-gray-600 text-white-600 hover:text-white-800 border-l-4 border-transparent hover:border-violet-400 dark:hover:border-gray-800 pr-6"
             >
-              <span className="inline-flex justify-center items-center ml-4">
+              <span className="inline-flex justify-center items-center ml-1">
                 <IoSettingsOutline size={30} />
               </span>
               <span className="ml-2 text-sm tracking-wide truncate">

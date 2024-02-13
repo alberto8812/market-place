@@ -69,6 +69,8 @@ export const getProductAdmindBySlug = async (slug: string) => {
             sizes:{
               select:{
                 size:true,
+                garmenttype:true,
+                sizeCategory:true,
                 id:true
               }
             }
@@ -81,8 +83,8 @@ export const getProductAdmindBySlug = async (slug: string) => {
       },
     });
 
-    if (!product) return null;
 
+    if (!product) return null;
    // const {productImage,...rest}=product;
     //console.log(inventory.map(invent=>({...invent,sizes:invent.sizes.size})) )
     

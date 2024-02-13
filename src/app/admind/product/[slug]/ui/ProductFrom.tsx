@@ -3,42 +3,46 @@
 import { createupdateProduct, deleteProductImage } from "@/actions";
 import { ProductImage } from "@/components";
 import {
+  
+  GarmentType,
   Product,
   ProductImage as ProductWithImage,
+  SizeCategory,
   Sizes,
+  Subcategory,
 } from "@/components/interfaces";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
-interface SubCategories {
-  id: string;
-  name: string;
-}
+
+// export interface Inventory {
+//   inStock: number;
+//   id: string;
+//   sizesId: string;
+//   sizes: Sizes;
+// }
+// interface InProd {
+//   idInvetory:string;
+//   quantity:number
+// }
 
 interface Categories {
   id: string;
   name: string;
-  subCategory: SubCategories[];
+  subCategory: Subcategory[];
 }
 
-export interface Inventory {
-  inStock: number;
-  id: string;
-  sizesId: string;
-  sizes: Sizes;
-}
 
 interface Props {
   product: Partial<Product> & {
     productImage?: ProductWithImage[] /*,inventoryo?:Inventory*/;
   };
-  categories: Categories[];
+  categories: Categories[] ;
+  garmentTypes:GarmentType[];
+  sizeCategories:SizeCategory[] ;
 }
-interface InProd {
-  idInvetory:string;
-  quantity:number
-}
+
 
 interface FormInputs {
   title: string;
@@ -55,13 +59,15 @@ interface FormInputs {
   inventory: { [key: string]: {idInvetory:string,quantity:number } };
   images?: FileList;
   sale:number;
+  garmentTypes:string;
+  sizeCategories:string
 }
 
 
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
-export const ProductForm = ({ product, categories }: Props) => {
+export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }: Props) => {
   const inventory= product?.inventory?.map(invent=>({...invent,sizes:invent.sizes.size})) ?? []
   const defaultInventory: { [key: string]:{idInvetory:string,quantity:number } } = Object.fromEntries(
     sizes.map((size) =>{
@@ -70,6 +76,7 @@ export const ProductForm = ({ product, categories }: Props) => {
 
     })
   ) ;
+
 
   const router = useRouter();
 
@@ -259,6 +266,37 @@ export const ProductForm = ({ product, categories }: Props) => {
           ) : (
             <div className="p-2 border rounded-md bg-gray-200 h-10"></div>
           )}
+        </div>
+
+   {/* tipos de prenda */}
+   <div className="flex flex-col mb-2">
+          <span>GeneroPrenda</span>
+          <select
+            className="p-2 border rounded-md bg-gray-200"
+            {...register("categoryId", { required: true })}
+          >
+            <option value="">[Seleccione]</option>
+            {sizeCategories.map((sizeCategory) => (
+              <option value={sizeCategory.id} key={sizeCategory.id}>
+                {sizeCategory.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className="flex flex-col mb-2">
+          <span>Tipo de prenda</span>
+          <select
+            className="p-2 border rounded-md bg-gray-200"
+            {...register("categoryId", { required: true })}
+          >
+            <option value="">[Seleccione]</option>
+            {garmentTypes.map((garmentType) => (
+              <option value={garmentType.id} key={garmentType.id}>
+                {garmentType.name}
+              </option>
+            ))}
+          </select>
         </div>
 
       </div>

@@ -10,6 +10,8 @@ export * from './product/create-update-product'
 export * from './product/delete-product-image'
 export * from './product/get-favoritesProduct'
 export * from './product/create-update-Categories'
+export * from './product/get-all-sizeCategory-gramentType'
+
 
 
 

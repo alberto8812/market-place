@@ -1,13 +1,14 @@
 import {
   getAllCategories,
   getAllSizeCategoryGramentType,
+  getAllSizes,
   getProductAdmindBySlug,
   getProductBySlug,
 } from "@/actions";
 import { Title } from "@/components";
 import { redirect } from "next/navigation";
 import { ProductForm } from "./ui/ProductFrom";
-import { SizeCategory } from "@/components/interfaces";
+import { Size, SizeCategory } from "@/components/interfaces";
 
 interface Props {
   params: {
@@ -18,11 +19,12 @@ interface Props {
 export default async function ProductPage({ params }: Props) {
   const { slug } = params;
 
-  const [product, getCategories, AllSizeCategoryGramentType] =
+  const [product, getCategories, AllSizeCategoryGramentType,Sizes] =
     await Promise.all([
       getProductAdmindBySlug(slug),
       getAllCategories(),
       getAllSizeCategoryGramentType(),
+      getAllSizes(),
     ]);
 
     const {sizeCategory, garmentType }=AllSizeCategoryGramentType;
@@ -43,6 +45,7 @@ export default async function ProductPage({ params }: Props) {
         categories={getCategories}
         garmentTypes={garmentType}
         sizeCategories={sizeCategory}
+        allSizes={Sizes}
       />
     </div>
   );

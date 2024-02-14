@@ -54,13 +54,15 @@ export interface ProductImage {
 export interface Inventory {
   inStock: number;
   sizesId: string;
-  sizes: size;
+  sizes: Size;
   id: string;
 }
 
-interface size {
+export interface Size {
   size: Sizes;
   id: string;
+  sizeCategoryId?:string;
+  garmenttypeId?:string;
   
 }
 

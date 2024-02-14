@@ -7,9 +7,11 @@ import {
   GarmentType,
   Product,
   ProductImage as ProductWithImage,
+  Size,
   SizeCategory,
   Sizes,
   Subcategory,
+
 } from "@/components/interfaces";
 import clsx from "clsx";
 import { useRouter } from "next/navigation";
@@ -41,6 +43,7 @@ interface Props {
   categories: Categories[] ;
   garmentTypes:GarmentType[];
   sizeCategories:SizeCategory[] ;
+  allSizes:Size[]
 }
 
 
@@ -59,15 +62,15 @@ interface FormInputs {
   inventory: { [key: string]: {idInvetory:string,quantity:number } };
   images?: FileList;
   sale:number;
-  garmentTypes:string;
-  sizeCategories:string
+  garmentTypesId:string;
+  sizeCategoriesId:string
 }
 
 
 
 const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
-export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }: Props) => {
+export const ProductForm = ({ product, categories,garmentTypes,sizeCategories,allSizes }: Props) => {
   const inventory= product?.inventory?.map(invent=>({...invent,sizes:invent.sizes.size})) ?? []
   const defaultInventory: { [key: string]:{idInvetory:string,quantity:number } } = Object.fromEntries(
     sizes.map((size) =>{
@@ -93,13 +96,18 @@ export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }:
       tags: product.tags?.join(","),
       sizes: product.sizes ?? [],
       inventory: defaultInventory,
+      garmentTypesId:'',
+      sizeCategoriesId:'',
       //todo images
       images: undefined,
     },
   });
   const selectedValue = watch("categoryId");
+  const selectedgarmentTypesId = watch("garmentTypesId");
+  const selectedsizeCategories = watch("sizeCategoriesId");
   watch("sizes");
   watch("inventory");
+
 
   const onSizeChange = (size: string) => {
     const sizes = new Set(getValues("sizes"));
@@ -273,7 +281,7 @@ export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }:
           <span>GeneroPrenda</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register("categoryId", { required: true })}
+            {...register("sizeCategoriesId", { required: true })}
           >
             <option value="">[Seleccione]</option>
             {sizeCategories.map((sizeCategory) => (
@@ -288,7 +296,7 @@ export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }:
           <span>Tipo de prenda</span>
           <select
             className="p-2 border rounded-md bg-gray-200"
-            {...register("categoryId", { required: true })}
+            {...register("garmentTypesId", { required: true })}
           >
             <option value="">[Seleccione]</option>
             {garmentTypes.map((garmentType) => (
@@ -415,6 +423,33 @@ export const ProductForm = ({ product, categories,garmentTypes,sizeCategories }:
         
       </div>
       
+     </div>
+     {/* esto es un prueba  de tablas  */}
+     <div className="overflow-x-auto w-full ">
+      {selectedgarmentTypesId  && selectedsizeCategories &&(
+
+            <table>
+            <thead className="bg-gray-200 border-b">
+                    <tr>
+                      <th className="border-y border-gray-100 bg-gray-50/50 p-2">
+                        Detalles
+                      </th>
+                      {allSizes.filter((size) => size.garmenttypeId === selectedgarmentTypesId &&  size.sizeCategoryId === selectedsizeCategories)
+                      .map((sizeChoose) =>(
+                        <th
+                        key={sizeChoose.id}
+                        className="border-y border-gray-100 bg-gray-50/50 p-2"
+                      >
+                        {sizeChoose.size}
+                      </th>
+                        
+                      ))}
+
+                    </tr>
+                  </thead>
+            </table>
+      )}
+{/* fin pureba  */}
      </div>
 
         <div className="overflow-x-auto w-full ">

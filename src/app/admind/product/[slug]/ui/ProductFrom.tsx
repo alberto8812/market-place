@@ -77,14 +77,18 @@ export const ProductForm = ({
       ...invent,
       sizes: invent.sizes.size,
     })) ?? [];
-  const defaultInventory: {
-    [key: string]: { idInvetory: string; quantity: number };
-  } = Object.fromEntries(
-    sizes.map((size) => {
-      const inventoryProduct = inventory.find((data) => data.sizes === size);
-      return [size, { idInvetory: inventoryProduct?.id || "", quantity: 0 }];
-    })
-  );
+  // const defaultInventory: {
+  //   [key: string]: { idInvetory: string; quantity: number };
+  // } = Object.fromEntries(
+  //   sizes.map((size) => {
+  //     const inventoryProduct = inventory.find((data) => data.sizes === size);
+  //     return [size, { idInvetory: inventoryProduct?.id || "", quantity: 0 }];
+  //   })
+  // );
+
+  console.log(inventory);
+ // console.log(defaultInventory);
+
 
   const router = useRouter();
 
@@ -100,7 +104,7 @@ export const ProductForm = ({
       ...product,
       tags: product.tags?.join(","),
       sizes: product.sizes ?? [],
-      inventory: defaultInventory,
+      inventory: {},
       garmentTypesId: "",
       sizeCategoriesId: "",
       //todo images
@@ -153,20 +157,26 @@ export const ProductForm = ({
     formData.append("flatProduct", productToSave.flatProduct);
     formData.append("inventory", JSON.stringify(productToSave.inventory));
     formData.append("sale", productToSave.sale.toString());
+    formData.append("garmentTypesId", productToSave.garmentTypesId);
+    formData.append("sizeCategoriesId", productToSave.garmentTypesId);
+
+    console.log(formData)
     if (images) {
       for (let i = 0; i < images.length; i++) {
         formData.append("images", images[i]);
       }
     }
+    //TODO AQUI QUEDAMOS 17/02/20224
 
-    const { ok, product: productRespond } = await createupdateProduct(formData);
+    // const { ok, product: productRespond } = 
+    await createupdateProduct(formData);
 
-    if (!ok) {
-      alert("producto no se pudo actualizar ");
-      return;
-    }
+    // if (!ok) {
+    //   alert("producto no se pudo actualizar ");
+    //   return;
+    // }
 
-    router.replace(`/admind/product/${productRespond?.slug}`);
+    // router.replace(`/admind/product/${productRespond?.slug}`);
   };
 
   useEffect(() => {
@@ -450,7 +460,7 @@ export const ProductForm = ({
                       key={sizeChoose.id}
                       className="border-y border-gray-100 bg-gray-50/50 p-2"
                     >
-                      {sizeChoose.size}
+                      {sizeChoose.size.split('_')[1]}
                     </th>
                   ))}
               </tr>

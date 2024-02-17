@@ -22,13 +22,13 @@ interface seedUser {
 
 type ValidSizes =
   //camisa adulto
-  | "XS"
-  | "S"
-  | "M"
-  | "L"
-  | "XL"
-  | "XXL"
-  | "XXXL"
+  | "CA_XS"
+  | "CA_S"
+  | "CA_M"
+  | "CA_L"
+  | "CA_XL"
+  | "CA_XXL"
+  | "CA_XXXL"
   | "NA"
   //camisa niino
   | "NC_4"
@@ -134,25 +134,25 @@ export const initialData: SeedData = {
   subCategories: ["camisa"],
   camisaHombre: [
     {
-      size: "XS",
+      size: "CA_XS",
     },
     {
-      size: "S",
+      size: "CA_S",
     },
     {
-      size: "M",
+      size: "CA_M",
     },
     {
-      size: "L",
+      size: "CA_L",
     },
     {
-      size: "XL",
+      size: "CA_XL",
     },
     {
-      size: "XXL",
+      size: "CA_XXL",
     },
     {
-      size: "XXXL",
+      size: "CA_XXXL",
     },
   ],
   zapatosHombre: [
@@ -220,25 +220,25 @@ export const initialData: SeedData = {
   ],
   camisaMujer: [
     {
-      size: "XS",
+      size: "CA_XS",
     },
     {
-      size: "S",
+      size: "CA_S",
     },
     {
-      size: "M",
+      size: "CA_M",
     },
     {
-      size: "L",
+      size: "CA_L",
     },
     {
-      size: "XL",
+      size: "CA_XL",
     },
     {
-      size: "XXL",
+      size: "CA_XXL",
     },
     {
-      size: "XXXL",
+      size: "CA_XXXL",
     },
   ],
   zapatosMujer: [
@@ -287,13 +287,13 @@ export const initialData: SeedData = {
   ],
   pantalonKids: [
     {
-      size: "S",
+      size: "CA_S",
     },
     {
-      size: "M",
+      size: "CA_M",
     },
     {
-      size: "L",
+      size: "CA_L",
     },
 
   ],
@@ -334,7 +334,7 @@ export const initialData: SeedData = {
       images: ["1740250-00-A_0_2000.jpg", "1740250-00-A_1.jpg"],
       inStock: 10,
       price: 130,
-      sizes: ["S", "M", "L", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_raven_lightweight_zip_up_bomber_jacket",
       type: "camisa",
       tags: ["camisa"],
@@ -348,7 +348,7 @@ export const initialData: SeedData = {
       images: ["1740280-00-A_0_2000.jpg", "1740280-00-A_1.jpg"],
       inStock: 50,
       price: 45,
-      sizes: ["XS", "S", "M", "L"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_turbine_long_sleeve_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -361,7 +361,7 @@ export const initialData: SeedData = {
       images: ["1741416-00-A_0_2000.jpg", "1741416-00-A_1.jpg"],
       inStock: 50,
       price: 40,
-      sizes: ["M", "L", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_turbine_short_sleeve_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -374,7 +374,7 @@ export const initialData: SeedData = {
       images: ["7654393-00-A_2_2000.jpg", "7654393-00-A_3.jpg"],
       inStock: 0,
       price: 35,
-      sizes: ["M", "L", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_cybertruck_owl_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -387,7 +387,7 @@ export const initialData: SeedData = {
       images: ["1703767-00-A_0_2000.jpg", "1703767-00-A_1.jpg"],
       inStock: 15,
       price: 35,
-      sizes: ["S", "M", "L", "XL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_solar_roof_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -400,7 +400,7 @@ export const initialData: SeedData = {
       images: ["1700280-00-A_0_2000.jpg", "1700280-00-A_1.jpg"],
       inStock: 17,
       price: 35,
-      sizes: ["XS", "S", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_let_the_sun_shine_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -413,7 +413,7 @@ export const initialData: SeedData = {
       images: ["8764734-00-A_0_2000.jpg", "8764734-00-A_1.jpg"],
       inStock: 12,
       price: 35,
-      sizes: ["XS", "S", "M"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_3d_large_wordmark_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -426,7 +426,7 @@ export const initialData: SeedData = {
       images: ["7652426-00-A_0_2000.jpg", "7652426-00-A_1.jpg"],
       inStock: 5,
       price: 35,
-      sizes: ["XS", "S"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_3d_t_logo_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -439,7 +439,7 @@ export const initialData: SeedData = {
       images: ["8528839-00-A_0_2000.jpg", "8528839-00-A_2.jpg"],
       inStock: 2,
       price: 35,
-      sizes: ["XS", "S", "M"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_3d_small_wordmark_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -452,7 +452,7 @@ export const initialData: SeedData = {
       images: ["1549268-00-A_0_2000.jpg", "1549268-00-A_2.jpg"],
       inStock: 82,
       price: 35,
-      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_plaid_mode_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -465,7 +465,7 @@ export const initialData: SeedData = {
       images: ["9877034-00-A_0_2000.jpg", "9877034-00-A_2.jpg"],
       inStock: 24,
       price: 35,
-      sizes: ["XL", "XXL"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_powerwall_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -478,7 +478,7 @@ export const initialData: SeedData = {
       images: ["1633802-00-A_0_2000.jpg", "1633802-00-A_2.jpg"],
       inStock: 5,
       price: 30,
-      sizes: ["XS", "S", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_battery_day_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -491,7 +491,7 @@ export const initialData: SeedData = {
       images: ["7654399-00-A_0_2000.jpg", "7654399-00-A_1.jpg"],
       inStock: 150,
       price: 30,
-      sizes: ["M", "L"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_cybertruck_bulletproof_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -504,7 +504,7 @@ export const initialData: SeedData = {
       images: ["7652410-00-A_0.jpg", "7652410-00-A_1_2000.jpg"],
       inStock: 10,
       price: 35,
-      sizes: ["XS", "S", "M", "L", "XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_haha_yes_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -517,7 +517,7 @@ export const initialData: SeedData = {
       images: ["8764600-00-A_0_2000.jpg", "8764600-00-A_2.jpg"],
       inStock: 34,
       price: 35,
-      sizes: ["XS", "S", "M", "L"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_s3xy_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -530,7 +530,7 @@ export const initialData: SeedData = {
       images: ["8764813-00-A_0_2000.jpg", "8764813-00-A_1.jpg"],
       inStock: 15,
       price: 40,
-      sizes: ["XL", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_3d_wordmark_long_sleeve_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -543,7 +543,7 @@ export const initialData: SeedData = {
       images: ["8529198-00-A_0_2000.jpg", "8529198-00-A_1.jpg"],
       inStock: 12,
       price: 40,
-      sizes: ["XS", "XXL"],
+      sizes: ["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_3d_t_logo_long_sleeve_tee",
       type: "camisa",
       tags: ["camisa"],
@@ -556,7 +556,7 @@ export const initialData: SeedData = {
       images: ["1741111-00-A_0_2000.jpg", "1741111-00-A_1.jpg"],
       inStock: 100,
       price: 85,
-      sizes: ["XS", "L", "XL", "XXL"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_chill_full_zip_hoodie",
       type: "camisa",
       tags: ["camisa"],
@@ -569,7 +569,7 @@ export const initialData: SeedData = {
       images: ["1740140-00-A_0_2000.jpg", "1740140-00-A_1.jpg"],
       inStock: 7,
       price: 85,
-      sizes: ["XS", "S", "M"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_chill_quarter_zip_pullover_-_gray",
       type: "camisa",
       tags: ["camisa"],
@@ -582,7 +582,7 @@ export const initialData: SeedData = {
       images: ["1740145-00-A_2_2000.jpg", "1740145-00-A_1.jpg"],
       inStock: 15,
       price: 85,
-      sizes: ["XS", "S", "M", "L"],
+      sizes:["CA_M", "CA_L", "CA_XL", "CA_XXL"],
       slug: "men_chill_quarter_zip_pullover_-_white",
       type: "camisa",
       tags: ["camisa"],

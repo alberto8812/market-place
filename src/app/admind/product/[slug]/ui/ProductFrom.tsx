@@ -1,5 +1,5 @@
 "use client";
-
+//todo  problema en producto tallas
 import { createupdateProduct, deleteProductImage } from "@/actions";
 import { ProductImage } from "@/components";
 import {
@@ -62,7 +62,7 @@ interface FormInputs {
   sizeCategoriesId: string;
 }
 
-const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+//const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
 export const ProductForm = ({
   product,
@@ -158,7 +158,7 @@ export const ProductForm = ({
     formData.append("inventory", JSON.stringify(productToSave.inventory));
     formData.append("sale", productToSave.sale.toString());
     formData.append("garmentTypesId", productToSave.garmentTypesId);
-    formData.append("sizeCategoriesId", productToSave.garmentTypesId);
+    formData.append("sizeCategoriesId", productToSave.sizeCategoriesId);
 
     console.log(formData)
     if (images) {
@@ -391,20 +391,20 @@ export const ProductForm = ({
 
             <span>Tallas</span>
             <div className="flex flex-wrap">
-              {sizes.map((size) => (
+              {loadSizes.map((size) => (
                 // bg-blue-500 text-white <--- si está seleccionado
                 <div
-                  key={size}
+                  key={size.id}
                   className={clsx(
                     "p-2 border rounded-md mr-2 mb-2 w-14 transition-all text-center cursor-pointer",
                     {
                       "bg-blue-500 text-white":
-                        getValues("sizes").includes(size),
+                        getValues("sizes").includes(size.size),
                     }
                   )}
-                  onClick={() => onSizeChange(size)}
+                  onClick={() => onSizeChange(size.size)}
                 >
-                  <span>{size}</span>
+                  <span>{size.size.split('_')[1]}</span>
                 </div>
               ))}
             </div>
@@ -516,92 +516,6 @@ export const ProductForm = ({
         )}
         {/* fin pureba  */}
       </div>
-
-      {/* <div className="overflow-x-auto w-full ">
-        <table className=" border-collapse border border-gray-300 w-full">
-          <thead className="bg-gray-200 border-b">
-            <tr>
-              <th className="border-y border-gray-100 bg-gray-50/50 p-2">
-                Detalles
-              </th>
-              {sizes.map((size) => (
-                <th
-                  key={size}
-                  className="border-y border-gray-100 bg-gray-50/50 p-2"
-                >
-                  {size}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr className="text-center">
-              <td className="border border-gray-300 px-4 py-2">Inventario</td>
-              {sizes.map((size, index) => {
-                const inventoryProduct = inventory.find(
-                  (data) => data.sizes === size
-                );
-                if (inventoryProduct)
-                  return (
-                    <td
-                      className="border border-gray-300 px-4 py-2"
-                      key={inventoryProduct.sizesId}
-                    >
-                      {inventoryProduct.inStock}
-                    </td>
-                  );
-                return (
-                  <td className="border border-gray-300 px-4 py-2" key={index}>
-                    0
-                  </td>
-                );
-              })}
-            </tr>
-            <tr className="text-center">
-              <td className="border border-gray-300 px-4 py-2">Actualizar</td>
-
-              {sizes.map((size, index) => {
-                const inventoryProduct = inventory.find(
-                  (data) => data.sizes === size
-                );
-                if (inventoryProduct)
-                  return (
-                    <td
-                      className="border border-gray-300 px-4 py-2"
-                      key={inventoryProduct.sizesId}
-                    >
-                      <input
-                        className="p-1 rounded border bg-white w-16"
-                        value={getValues(`inventory.${size}.quantity`)}
-                        onChange={(e) =>
-                          onSizeQuantityChange(
-                            size,
-                            inventoryProduct.id,
-                            e.target.value
-                          )
-                        }
-                      />
-                    </td>
-                  );
-                return (
-                  <td
-                    className="border border-gray-300 px-4 py-2"
-                    key={`${index}_${size}`}
-                  >
-                    <input
-                      className="p-1 rounded border bg-white w-16"
-                      value={getValues(`inventory.${size}.quantity`)}
-                      onChange={(e) =>
-                    onSizeQuantityChange(size, "", e.target.value)
-                      }
-                    />
-                  </td>
-                );
-              })}
-            </tr>
-          </tbody>
-        </table>
-      </div> */}
       <div className="flex justify-center mt-5">
         <button className="btn-primary w-56">Guardar</button>
       </div>

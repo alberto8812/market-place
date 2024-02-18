@@ -48,7 +48,7 @@ const productSchema = z.object({
 });
 
 interface AddOldInventory {
-  InvetoryId: string;
+  InventoryId: string;
   quantity: number;
 }
 interface newInventory {
@@ -62,159 +62,162 @@ export const createupdateProduct = async (formData: FormData) => {
 
   console.log(data)
   const productParsed = productSchema.safeParse(data);
-  console.log(productParsed)
   // //todo en este punto es para organizar por cantidad
   //console.log(productParsed.error)
   //console.log(productParsed?.error)
 
-  // if (!productParsed.success) {
-  //   console.log(productParsed.error);
-  //   return {
-  //     ok: false,
-  //   };
-  // }
+  if (!productParsed.success) {
+    console.log(productParsed.error);
+    return {
+      ok: false,
+    };
+  }
 
-  // const product = productParsed.data;
+  const product = productParsed.data;
 
-  // product.slug = product.slug.toLocaleLowerCase().replace(/ /g, "-").trim();
+  product.slug = product.slug.toLocaleLowerCase().replace(/ /g, "-").trim();
 
-  // const { id, inventory, ...rest } = product;
+  const { id, inventory,sizeCategoriesId,garmentTypesId, ...rest } = product;
 
-  // try {
-  //   const prismaTx = await prisma.$transaction(async (tx) => {
-  //     let product: Product;
-  //     const newInventory: newInventory[] = [];
-  //     const addOldInventory: AddOldInventory[] = [];
-  //     const tagsArray = rest.tags
-  //       .split(",")
-  //       .map((tag) => tag.trim().toLocaleLowerCase());
-  //     const sizesCode = await tx.sizes.findMany();
 
-  //     for (const property in inventory) {
-  //       if (inventory[property].quantity > 0) {
-  //         sizesCode.map((sizes) => {
-  //           if (
-  //             sizes.size === property &&
-  //             inventory[property].idInvetory !== ""
-  //           ) {
-  //             addOldInventory.push({
-  //               InvetoryId: inventory[property].idInvetory,
-  //               quantity: inventory[property].quantity,
-  //             });
-  //             return;
-  //           } else if (
-  //             sizes.size === property &&
-  //             inventory[property].idInvetory === ""
-  //           ) {
-  //             newInventory.push({
-  //               sizesId: sizes.id,
-  //               quantity: inventory[property].quantity,
-  //             });
-  //             return;
-  //           }
-  //           return;
-  //         });
-  //       }
-  //     }
+  try {
+    const prismaTx = await prisma.$transaction(async (tx) => {
+      let product: Product;
+      const newInventory: newInventory[] = [];
+      const addOldInventory: AddOldInventory[] = [];
+      const tagsArray = rest.tags
+        .split(",")
+        .map((tag) => tag.trim().toLocaleLowerCase());
+      const sizesCode = await tx.sizes.findMany({where:{garmenttypeId:garmentTypesId,sizeCategoryId:sizeCategoriesId}});
+      for (const property in inventory) {
+        if (inventory[property].quantity > 0) {
+          sizesCode.map((sizes) => {
+            if (
+              sizes.id === property &&
+              inventory[property].idInventory !== "" &&
+              inventory[property].idInventory !== undefined
+            ) {
+         //     console.log(property)
+              addOldInventory.push({
+                InventoryId: inventory[property].idInventory ?? '',
+                quantity: inventory[property].quantity,
+              });
+              return;
+            } else if (
+              sizes.id === property &&
+              (inventory[property].idInventory === "" ||
+              inventory[property].idInventory === undefined )
+            ) {
+              newInventory.push({
+                sizesId: sizes.id,
+                quantity: inventory[property].quantity,
+              });
+              return;
+            }
+            return;
+          });
+        }
+      }
+
 
 
       
-  //     if (id) {
-  //       //actualizar
-  //       // todo pendinete validar path http://localhost:3000/category/kids_shirts
-  //       //todo si no se quiere modificar el inventario
-  //       product = await tx.product.update({
-  //         where: { id },
-  //         data: {
-  //           ...rest,
-  //           sizes: {
-  //             set: rest.sizes as Sizes[],
-  //           },
-  //           tags: {
-  //             set: tagsArray,
-  //           },
-  //           sale:rest.sale/100
-  //         },
-  //       });
+      if (id) {
+        //actualizar
+        // todo pendinete validar path http://localhost:3000/category/kids_shirts
+        //todo si no se quiere modificar el inventario
+        product = await tx.product.update({
+          where: { id },
+          data: {
+            ...rest,
+            sizes: {
+              set: rest.sizes as Sizes[],
+            },
+            tags: {
+              set: tagsArray,
+            },
+            sale:rest.sale/100
+          },
+        });
 
-  //       if(newInventory.length>0){
-  //         const inventoryAddProductId=newInventory.map(inventory=>({sizesId:inventory.sizesId,productId:product.id,inStock:inventory.quantity}));
-  //         await tx.inventory.createMany({
-  //           data:inventoryAddProductId
-  //         })
-  //       }
+        if(newInventory.length>0){
+          const inventoryAddProductId=newInventory.map(inventory=>({sizesId:inventory.sizesId,productId:product.id,inStock:inventory.quantity}));
+          await tx.inventory.createMany({
+            data:inventoryAddProductId
+          })
+        }
         
-  //       addOldInventory.forEach(async(inventory) => {
-  //         await tx.inventory.update({
-  //           where:{
-  //             id:inventory.InvetoryId
-  //           },
-  //           data:{
-  //             inStock:{
-  //               increment:inventory.quantity
-  //             }
-  //           }
-  //         })
-  //      });
-  //     } else {
-  //       product = await tx.product.create({
-  //         data: {
-  //           ...rest,
-  //           sizes: {
-  //             set: rest.sizes as Sizes[],
-  //           },
-  //           tags: {
-  //             set: tagsArray,
-  //           },
-  //         },
-  //       });
+        addOldInventory.forEach(async(inventory) => {
+          await tx.inventory.update({
+            where:{
+              id:inventory.InventoryId
+            },
+            data:{
+              inStock:{
+                increment:inventory.quantity
+              }
+            }
+          })
+       });
+      } else {
+        product = await tx.product.create({
+          data: {
+            ...rest,
+            sizes: {
+              set: rest.sizes as Sizes[],
+            },
+            tags: {
+              set: tagsArray,
+            },
+          },
+        });
 
-  //       const inventoryAddProductId=newInventory.map(inventory=>({sizesId:inventory.sizesId,productId:product.id,inStock:inventory.quantity}));
-  //       await tx.inventory.createMany({
-  //         data:inventoryAddProductId
-  //       })
-  //     }
+        const inventoryAddProductId=newInventory.map(inventory=>({sizesId:inventory.sizesId,productId:product.id,inStock:inventory.quantity}));
+        await tx.inventory.createMany({
+          data:inventoryAddProductId
+        })
+      }
 
-  //     //proceso de carfga y guardado de images
-  //     //recorrer imagens y guardarlas
-  //     if (formData.getAll("images")) {
-  //       const images = await uploadImages(formData.getAll("images") as File[]);
+      //proceso de carfga y guardado de images
+      //recorrer imagens y guardarlas
+      if (formData.getAll("images")) {
+        const images = await uploadImages(formData.getAll("images") as File[]);
         
-  //       if (!images) {
-  //         throw new Error("Nose pudo cargar las images,rollingback");
-  //       }
-  //       console.log('carlos 1');
-  //       await tx.productImage.createMany({
-  //         data: images.map((image) => ({
-  //           url: image!,
-  //           ProductId: product.id,
-  //         })),
-  //       });
+        if (!images) {
+          throw new Error("Nose pudo cargar las images,rollingback");
+        }
+        console.log('carlos 1');
+        await tx.productImage.createMany({
+          data: images.map((image) => ({
+            url: image!,
+            ProductId: product.id,
+          })),
+        });
 
-  //     }
+      }
 
-  //     return {
-  //       product,
-  //     };
-  //   });
+      return {
+        product,
+     };
+    });
 
-  //   const { product } = prismaTx;
-  //   //Revalidacion
-  //   revalidatePath("/admind/products");
-  //   revalidatePath(`/admind/product/${product.slug}`);
-  //   revalidatePath(`/product/${product.slug}`);
+    const { product } = prismaTx;
+    //Revalidacion
+    revalidatePath("/admind/products");
+    revalidatePath(`/admind/product/${product.slug}`);
+    revalidatePath(`/product/${product.slug}`);
 
-  //   return {
-  //     ok: true,
-  //     product,
-  //   };
-  // } catch (error) {
-  //   console.log(error);
-  //   return {
-  //     ok: false,
-  //     message: "No se pudo registrar el producto",
-  //   };
-  // }
+    return {
+      ok: true,
+      product,
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      ok: false,
+      message: "No se pudo registrar el producto",
+    };
+  }
 };
 
 const uploadImages = async (images: File[]) => {

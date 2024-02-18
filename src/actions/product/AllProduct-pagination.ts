@@ -48,7 +48,7 @@ export const getPaginatedAllProductsWithImages = async ({
             }
         }
       },
-      //! Por género
+
       where: {
         gender: gender,
       },
@@ -58,7 +58,6 @@ export const getPaginatedAllProductsWithImages = async ({
     });
 
     // 2. Obtener el total de páginas
-    // todo:
     const totalCount = await prisma.product.count({
       where: {
         gender: gender,
@@ -76,7 +75,7 @@ export const getPaginatedAllProductsWithImages = async ({
       })),
     };
   } catch (error) {
-    console.log(error,'carlos')
+    console.log(error)
     throw new Error("No se pudo cargar los productos");
   }
 };

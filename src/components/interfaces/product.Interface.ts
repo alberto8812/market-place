@@ -1,5 +1,3 @@
-
-
 export interface Product {
   id: string;
   description: string;
@@ -11,12 +9,12 @@ export interface Product {
   tags: string[];
   title: string;
   flatProduct: string;
-  sale:number
+  sale: number;
   inventory?: Inventory[];
   // type: Type;
   gender: Gender;
   category?: Category; //agregado
-  subcategory?: subcategory;
+  subcategory?: Subcategory;
 
   categoryId: string;
   subCategoryId: string;
@@ -30,12 +28,12 @@ export interface CartProduct {
   quantity: number;
   size?: Sizes;
   image: string;
-  inStock?:number;
-  sizeId?:string;
-  idInventory:string
-  sale:number,
-  priceSale:number
-//todo quitar el id  y el instock 
+  inStock?: number;
+  sizeId?: string;
+  idInventory: string;
+  sale: number;
+  priceSale: number;
+  //todo quitar el id  y el instock
 }
 
 export interface Category {
@@ -43,7 +41,7 @@ export interface Category {
   name: string;
 }
 
-export interface subcategory {
+export interface Subcategory {
   id: string;
   name: string;
 }
@@ -53,21 +51,81 @@ export interface ProductImage {
   url: string;
 }
 
-
 export interface Inventory {
-  inStock:number;
-  sizesId:string;
-  sizes:size
-  id:string
+  inStock: number;
+  sizesId: string;
+  sizes: Size;
+  id: string;
 }
 
-interface size {
-  size:Sizes 
-  id:string
+export interface Size {
+  size: Sizes;
+  id: string;
+  sizeCategoryId?:string;
+  garmenttypeId?:string;
+  
+}
+
+export interface GarmentType{
+  id:string;
+  name:GarmentTypes
+}
+export interface SizeCategory{
+  id:string;
+  name:SizeCategories
 }
 
 export type Gender = "mujer" | "hombre" | "kids" | "NA" | "unisex";
-export type Sizes = "XS" | "S" | "M" | "L" | "XL" | "XXL" | "XXXL" | "NA";
+export type Sizes =
+  | "CA_XS"
+  | "CA_S"
+  | "CA_M"
+  | "CA_L"
+  | "CA_XL"
+  | "CA_XXL"
+  | "CA_XXXL"
+  | "NA"
+  // PANTALONES  ADULTOS HOMBRE
+  | "HP_28"
+  | "HP_30"
+  | "HP_32"
+  | "HP_34"
+  | "HP_36"
+  | "HP_38"
+  // PANTALONES  ADULTOS mujer
+  | "MP_4"
+  | "MP_6"
+  | "MP_8"
+  | "MP_10"
+  | "MP_12"
+  | "MP_14"
+  //ZAPTOS ADOULTOS
+  | "ZA_36"
+  | "ZA_37"
+  | "ZA_38"
+  | "ZA_39"
+  | "ZA_40"
+  | "ZA_41"
+  | "ZA_42"
+  | "ZA_43"
+
+  //TALLA CAMISAS NINOS
+  | "NC_4"
+  | "NC_6"
+  | "NC_8"
+  | "NC_10"
+  | "NC_12"
+  | "NC_14"
+
+  // TALLA ZAPATOS NINOS
+  | "NZ_28"
+  | "NZ_29"
+  | "NZ_30"
+  | "NZ_31"
+  | "NZ_32"
+  | "NZ_33"
+  | "NZ_34";
+
 export type Type = "shirts" | "pants" | "hoodies" | "hats";
 
 export enum GenderEnum {
@@ -79,3 +137,64 @@ export enum GenderEnum {
 }
 
 
+ type GarmentTypes =
+  | "camisa"
+  | "pantalon"
+  | "zapatos"
+  | "NA";
+
+ type SizeCategories =
+  |"hombre"
+  |"mujer"
+  |"kids"
+  |"NA";
+
+  export const allSizes =[
+    "CA_XS"
+    ,"CA_S"
+    ,"CA_M"
+    ,"CA_L"
+    ,"CA_XL"
+    ,"CA_XXL"
+    ,"CA_XXXL"
+    ,"NA"
+  // PANTALONES  ADULTOS HOMBRE
+    ,"HP_28"
+    ,"HP_30"
+    ,"HP_32"
+    ,"HP_34"
+    ,"HP_36"
+    ,"HP_38"
+  // PANTALONES  ADULTOS mujer
+    ,"MP_4"
+    ,"MP_6"
+    ,"MP_8"
+    ,"MP_10"
+    ,"MP_12"
+    ,"MP_14"
+  //ZAPTOS ADOULTOS
+    ,"ZA_36"
+    ,"ZA_37"
+    ,"ZA_38"
+    ,"ZA_39"
+    ,"ZA_40"
+    ,"ZA_41"
+    ,"ZA_42"
+    ,"ZA_43"
+
+  //TALLA CAMISAS NINOS
+    ,"NC_4"
+    ,"NC_6"
+    ,"NC_8"
+    ,"NC_10"
+    ,"NC_12"
+    ,"NC_14"
+
+  // TALLA ZAPATOS NINOS
+  ,"NZ_28"
+  ,"NZ_29"
+  ,"NZ_30"
+  ,"NZ_31"
+  ,"NZ_32"
+  ,"NZ_33"
+  ,"NZ_34"]

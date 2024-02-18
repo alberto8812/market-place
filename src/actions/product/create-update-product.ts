@@ -1,12 +1,17 @@
 "use server";
-import { GenderEnum, Product, Sizes } from "@/components/interfaces";
+import { GenderEnum, Product, Sizes, allSizes } from "@/components/interfaces";
 import { v2 as cloudinary } from "cloudinary";
 import prisma from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
-import { number, object, z } from "zod";
+import { number, object, string, z } from "zod";
 cloudinary.config(process.env.CLOUDINARY_URL ?? "");
 
-const allowedSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+
+//const allowedSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+const inventoryItemSchema = z.object({
+  idInventory: z.string().uuid().optional(), // Validar que idInventory sea un string
+  quantity: z.number().int().positive() // Validar que quantity sea un número entero positivo
+});
 const productSchema = z.object({
   id: z.string().uuid().optional().nullable(),
   title: z.string().min(3).max(255),
@@ -27,21 +32,23 @@ const productSchema = z.object({
   gender: z.nativeEnum(GenderEnum),
   flatProduct: z.string(),
   sale:z.coerce.number().max(100).min(0).transform(vale=>Number(vale)),
-  inventory: z.object(
-    Object.fromEntries(
-      allowedSizes.map((size) => [
-        size,
-        z.object({
-          idInvetory: z.string(),
-          quantity: z.number().int().min(0),
-        }),
-      ])
-    )
-  ),
+   inventory: z.record(inventoryItemSchema),// z.object(
+  //   Object.fromEntries(
+  //     allSizes.map((size) => [
+  //       size,
+  //       z.object({
+  //         idInvetory: z.string(),
+  //         quantity: z.number().int().min(0),
+  //       }),
+  //     ])
+  //   )
+  // ),
+  garmentTypesId:z.string().uuid(),
+  sizeCategoriesId:string().uuid(),
 });
 
 interface AddOldInventory {
-  InvetoryId: string;
+  InventoryId: string;
   quantity: number;
 }
 interface newInventory {
@@ -51,12 +58,11 @@ interface newInventory {
 
 export const createupdateProduct = async (formData: FormData) => {
   const data = Object.fromEntries(formData);
+  if (typeof data.inventory === "string") data.inventory = JSON.parse(data.inventory);
 
-  if (typeof data.inventory === "string")
-    data.inventory = JSON.parse(data.inventory);
-
+  console.log(data)
   const productParsed = productSchema.safeParse(data);
-
+  // //todo en este punto es para organizar por cantidad
   //console.log(productParsed.error)
   //console.log(productParsed?.error)
 
@@ -71,8 +77,8 @@ export const createupdateProduct = async (formData: FormData) => {
 
   product.slug = product.slug.toLocaleLowerCase().replace(/ /g, "-").trim();
 
-  const { id, inventory, ...rest } = product;
-  //todo en este punto es para organizar por cantidad
+  const { id, inventory,sizeCategoriesId,garmentTypesId, ...rest } = product;
+
 
   try {
     const prismaTx = await prisma.$transaction(async (tx) => {
@@ -82,23 +88,25 @@ export const createupdateProduct = async (formData: FormData) => {
       const tagsArray = rest.tags
         .split(",")
         .map((tag) => tag.trim().toLocaleLowerCase());
-      const sizesCode = await tx.sizes.findMany();
-
+      const sizesCode = await tx.sizes.findMany({where:{garmenttypeId:garmentTypesId,sizeCategoryId:sizeCategoriesId}});
       for (const property in inventory) {
         if (inventory[property].quantity > 0) {
           sizesCode.map((sizes) => {
             if (
-              sizes.size === property &&
-              inventory[property].idInvetory !== ""
+              sizes.id === property &&
+              inventory[property].idInventory !== "" &&
+              inventory[property].idInventory !== undefined
             ) {
+         //     console.log(property)
               addOldInventory.push({
-                InvetoryId: inventory[property].idInvetory,
+                InventoryId: inventory[property].idInventory ?? '',
                 quantity: inventory[property].quantity,
               });
               return;
             } else if (
-              sizes.size === property &&
-              inventory[property].idInvetory === ""
+              sizes.id === property &&
+              (inventory[property].idInventory === "" ||
+              inventory[property].idInventory === undefined )
             ) {
               newInventory.push({
                 sizesId: sizes.id,
@@ -110,6 +118,7 @@ export const createupdateProduct = async (formData: FormData) => {
           });
         }
       }
+
 
 
       
@@ -141,7 +150,7 @@ export const createupdateProduct = async (formData: FormData) => {
         addOldInventory.forEach(async(inventory) => {
           await tx.inventory.update({
             where:{
-              id:inventory.InvetoryId
+              id:inventory.InventoryId
             },
             data:{
               inStock:{
@@ -189,7 +198,7 @@ export const createupdateProduct = async (formData: FormData) => {
 
       return {
         product,
-      };
+     };
     });
 
     const { product } = prismaTx;

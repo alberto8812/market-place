@@ -4,7 +4,7 @@ import {
   CategoriesSubcategories,
   Category,
   SubCategory,
-  subcategory,
+
 } from "@/components/interfaces";
 import React, { useState } from "react";
 

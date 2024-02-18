@@ -3,7 +3,7 @@ import { UpdateCategories } from "@/actions";
 import {
   CategoriesSubcategories,
   Category,
-  SubCategory,
+  SubCategory
 
 } from "@/components/interfaces";
 import React, { useState } from "react";

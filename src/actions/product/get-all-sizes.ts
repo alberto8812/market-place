@@ -4,7 +4,6 @@ import prisma from "@/lib/prisma"
 export const getAllSizes=async()=>{
     try {
         const sizes= await prisma.sizes.findMany()
-        console.log(sizes)
         return sizes;
 
         

@@ -35,8 +35,9 @@ interface Categories {
 
 interface Props {
   product: Partial<Product> & {
-    productImage?: ProductWithImage[] /*,inventoryo?:Inventory*/;
-  };
+    productImage?: ProductWithImage[]
+     /*,inventoryo?:Inventory*/
+  }&{garmentTypesId?:string} & {sizeCategoriesId?:string};
   categories: Categories[];
   garmentTypes: GarmentType[];
   sizeCategories: SizeCategory[];
@@ -86,7 +87,10 @@ export const ProductForm = ({
   //   })
   // );
 
-  console.log(inventory);
+  console.log(product);
+  console.log( product.garmentTypesId);
+  console.log( product.sizeCategoriesId);
+  console.log( product.images);
  // console.log(defaultInventory);
 
 
@@ -105,8 +109,8 @@ export const ProductForm = ({
       tags: product.tags?.join(","),
       sizes: product.sizes ?? [],
       inventory: {},
-      garmentTypesId: "",
-      sizeCategoriesId: "",
+      garmentTypesId: product.garmentTypesId,
+      sizeCategoriesId:product.sizeCategoriesId,
       //todo images
       images: undefined,
     },

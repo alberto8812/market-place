@@ -71,7 +71,8 @@ export const getProductAdmindBySlug = async (slug: string) => {
                 size:true,
                 garmenttype:true,
                 sizeCategory:true,
-                id:true
+                id:true,
+
               }
             }
 
@@ -87,11 +88,12 @@ export const getProductAdmindBySlug = async (slug: string) => {
     if (!product) return null;
    // const {productImage,...rest}=product;
     //console.log(inventory.map(invent=>({...invent,sizes:invent.sizes.size})) )
-    
     return {
       ...product,
       images:product.productImage.map((image) => image.url),
       sale:product.sale * 100,
+      garmentTypesId:product.inventory[0].sizes.garmenttype.id,
+      sizeCategoriesId:product.inventory[0].sizes.sizeCategory.id
      // inventoryo:product.inventory.map(invent=>({...invent,sizes:invent.sizes.size})) 
     };
   } catch (error) {

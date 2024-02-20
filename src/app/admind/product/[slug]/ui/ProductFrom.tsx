@@ -35,9 +35,9 @@ interface Categories {
 
 interface Props {
   product: Partial<Product> & {
-    productImage?: ProductWithImage[]
-     /*,inventoryo?:Inventory*/
-  }&{garmentTypesId?:string} & {sizeCategoriesId?:string};
+    productImage?: ProductWithImage[];
+    /*,inventoryo?:Inventory*/
+  } & { garmentTypesId?: string } & { sizeCategoriesId?: string };
   categories: Categories[];
   garmentTypes: GarmentType[];
   sizeCategories: SizeCategory[];
@@ -87,12 +87,7 @@ export const ProductForm = ({
   //   })
   // );
 
-  console.log(product);
-  console.log( product.garmentTypesId);
-  console.log( product.sizeCategoriesId);
-  console.log( product.images);
- // console.log(defaultInventory);
-
+  // console.log(defaultInventory);
 
   const router = useRouter();
 
@@ -110,7 +105,7 @@ export const ProductForm = ({
       sizes: product.sizes ?? [],
       inventory: {},
       garmentTypesId: product.garmentTypesId,
-      sizeCategoriesId:product.sizeCategoriesId,
+      sizeCategoriesId: product.sizeCategoriesId,
       //todo images
       images: undefined,
     },
@@ -164,23 +159,21 @@ export const ProductForm = ({
     formData.append("garmentTypesId", productToSave.garmentTypesId);
     formData.append("sizeCategoriesId", productToSave.sizeCategoriesId);
 
-    console.log(formData)
     if (images) {
       for (let i = 0; i < images.length; i++) {
         formData.append("images", images[i]);
       }
     }
     //TODO AQUI QUEDAMOS 17/02/20224
+    console.log(formData);
+     const { ok, product: productRespond } =  await createupdateProduct(formData);
 
-    // const { ok, product: productRespond } = 
-    await createupdateProduct(formData);
+    if (!ok) {
+      alert("producto no se pudo actualizar ");
+      return;
+    }
 
-    // if (!ok) {
-    //   alert("producto no se pudo actualizar ");
-    //   return;
-    // }
-
-    // router.replace(`/admind/product/${productRespond?.slug}`);
+    router.replace(`/admind/product/${productRespond?.slug}`);
   };
 
   useEffect(() => {
@@ -191,7 +184,6 @@ export const ProductForm = ({
     );
     setLoadSizes(sizes);
   }, [selectedgarmentTypesId, selectedsizeCategories]);
-
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -402,13 +394,14 @@ export const ProductForm = ({
                   className={clsx(
                     "p-2 border rounded-md mr-2 mb-2 w-14 transition-all text-center cursor-pointer",
                     {
-                      "bg-blue-500 text-white":
-                        getValues("sizes").includes(size.size),
+                      "bg-blue-500 text-white": getValues("sizes").includes(
+                        size.size
+                      ),
                     }
                   )}
                   onClick={() => onSizeChange(size.size)}
                 >
-                  <span>{size.size.split('_')[1]}</span>
+                  <span>{size.size.split("_")[1]}</span>
                 </div>
               ))}
             </div>
@@ -458,15 +451,14 @@ export const ProductForm = ({
                 <th className="border-y border-gray-100 bg-gray-50/50 p-2">
                   Detalles
                 </th>
-                {loadSizes
-                  .map((sizeChoose) => (
-                    <th
-                      key={sizeChoose.id}
-                      className="border-y border-gray-100 bg-gray-50/50 p-2"
-                    >
-                      {sizeChoose.size.split('_')[1]}
-                    </th>
-                  ))}
+                {loadSizes.map((sizeChoose) => (
+                  <th
+                    key={sizeChoose.id}
+                    className="border-y border-gray-100 bg-gray-50/50 p-2"
+                  >
+                    {sizeChoose.size.split("_")[1]}
+                  </th>
+                ))}
               </tr>
             </thead>
             <tbody>
@@ -496,11 +488,30 @@ export const ProductForm = ({
                 })}
               </tr>
               <tr className="text-center">
-              <td className="border border-gray-300 px-4 py-2">Actualizar</td>
-              
-              {loadSizes.map((size, index) => {
-                return (
-                  <td
+                <td className="border border-gray-300 px-4 py-2">Actualizar</td>
+
+                {loadSizes.map((size, index) => {
+                  const inventoryProduct = inventory.find(
+                    (data) => data.sizes === size.size
+                  );
+                  if (inventoryProduct){
+                    return (
+                      <td
+                        className="border border-gray-300 px-4 py-2"
+                        key={`${index}_${size}`}
+                      >
+                        <input
+                          className="p-1 rounded border bg-white w-16"
+                          value={getValues(`inventory.${size}.quantity`)}
+                          onChange={(e) =>
+                            onSizeQuantityChange(size.id, inventoryProduct.id, e.target.value)
+                          }
+                        />
+                      </td>
+                  );
+                  };
+                  return (
+                    <td
                     className="border border-gray-300 px-4 py-2"
                     key={`${index}_${size}`}
                   >
@@ -508,12 +519,12 @@ export const ProductForm = ({
                       className="p-1 rounded border bg-white w-16"
                       value={getValues(`inventory.${size}.quantity`)}
                       onChange={(e) =>
-                    onSizeQuantityChange(size.id, "", e.target.value)
+                        onSizeQuantityChange(size.id, "", e.target.value)
                       }
                     />
                   </td>
-                );
-              })}
+                  );
+                })}
               </tr>
             </tbody>
           </table>

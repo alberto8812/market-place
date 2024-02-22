@@ -64,7 +64,7 @@ interface FormInputs {
 }
 
 //const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-
+// todo hacer un hook  organizar codigo 
 export const ProductForm = ({
   product,
   categories,

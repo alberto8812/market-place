@@ -67,7 +67,7 @@ export default async function ProductPage({ params }: Props) {
         />
       </div>
       {/* detalles */}
-      <div className="col-span-1 px-5   md:grid-cols-2 lg:pt-16">
+      <div className="col-span-1 px-5   md:grid-cols-2 lg:pt-2">
         <StokcLabel slug={getProduct.slug} />
 
         <h1 className={`${titleFont.className} antialiased font-bold text-4xl`}>

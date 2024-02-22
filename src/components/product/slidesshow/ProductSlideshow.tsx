@@ -73,7 +73,7 @@ export const ProductSlideshow:FC <Props> = ({images,title,className}) => {
         {
             images.map(img=>(
                 <SwiperSlide key={img}>
-                <Image src={`/products/${img}`}  width={1024} height={800} alt={title}
+                <ProductImage src={img}  width={1024} height={800} alt={title}
                 className='rounded-lg object-fill'
                 />
                 </SwiperSlide>

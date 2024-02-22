@@ -162,6 +162,7 @@ export const createupdateProduct = async (formData: FormData) => {
             tags: {
               set: tagsArray,
             },
+            sale:rest.sale/100
           },
         });
 

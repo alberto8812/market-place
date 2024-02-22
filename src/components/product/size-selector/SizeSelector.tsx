@@ -11,7 +11,7 @@ interface Props{
     inventory:Inventory[],
     onSizeChanged:(sizeId:string,size:Sizes,inStock:number,inventory:string)=>void,
 }
-//todo tallas se duplican
+//todo tallas se duplicannpm
 export const SizeSelector:FC <Props> = ({selecdSize,inventory,onSizeChanged}) => {
   return (
     <div className="my-5 ">

@@ -45,7 +45,7 @@ export const getProductBySlug = async (slug: string) => {
       },
     });
     if (!product) return null;
-     console.log(product)
+    
     return {
       ...product,
       images: product.productImage.map((image) => image.url),

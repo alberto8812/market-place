@@ -1,6 +1,6 @@
 "use client";
-//todo  problema en producto tallas
-import { createupdateProduct, deleteProductImage } from "@/actions";
+// todo ojo la talba d dallas  cuando se crea un nueva  se debe recargar asigne los Id
+import { deleteProductImage } from "@/actions";
 import { ProductImage } from "@/components";
 import {
   GarmentType,
@@ -8,24 +8,11 @@ import {
   ProductImage as ProductWithImage,
   Size,
   SizeCategory,
-  Sizes,
   Subcategory,
 } from "@/components/interfaces";
+import { useProductSizeFrom, useProudctFrom } from "@/hooks/admin";
 import clsx from "clsx";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-
-// export interface Inventory {
-//   inStock: number;
-//   id: string;
-//   sizesId: string;
-//   sizes: Sizes;
-// }
-// interface InProd {
-//   idInvetory:string;
-//   quantity:number
-// }
+import { useEffect } from "react";
 
 interface Categories {
   id: string;
@@ -44,27 +31,6 @@ interface Props {
   allSizes: Size[];
 }
 
-interface FormInputs {
-  title: string;
-  slug: string;
-  description: string;
-  price: number;
-  inStock: number;
-  sizes: string[];
-  tags: string; //camisa,t-shirt
-  gender: "mujer" | "hombre" | "kids" | "NA" | "unisex";
-  categoryId: string;
-  subCategoryId: string;
-  flatProduct: string;
-  inventory: { [key: string]: { idInvetory: string; quantity: number } };
-  images?: FileList;
-  sale: number;
-  garmentTypesId: string;
-  sizeCategoriesId: string;
-}
-
-//const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-// todo hacer un hook  organizar codigo 
 export const ProductForm = ({
   product,
   categories,
@@ -72,109 +38,28 @@ export const ProductForm = ({
   sizeCategories,
   allSizes,
 }: Props) => {
-  const [loadSizes, setLoadSizes] = useState<Size[]>([]);
-  const inventory =
-    product?.inventory?.map((invent) => ({
-      ...invent,
-      sizes: invent.sizes.size,
-    })) ?? [];
-  // const defaultInventory: {
-  //   [key: string]: { idInvetory: string; quantity: number };
-  // } = Object.fromEntries(
-  //   sizes.map((size) => {
-  //     const inventoryProduct = inventory.find((data) => data.sizes === size);
-  //     return [size, { idInvetory: inventoryProduct?.id || "", quantity: 0 }];
-  //   })
-  // );
-
-  // console.log(defaultInventory);
-
-  const router = useRouter();
+  const { inventory, loadSizes, setLoadSizes } = useProductSizeFrom({
+    product,
+  });
 
   const {
     handleSubmit,
     register,
-    formState: { isValid },
+    isValid,
     getValues,
     setValue,
     watch,
-  } = useForm<FormInputs>({
-    defaultValues: {
-      ...product,
-      tags: product.tags?.join(","),
-      sizes: product.sizes ?? [],
-      inventory: {},
-      garmentTypesId: product.garmentTypesId,
-      sizeCategoriesId: product.sizeCategoriesId,
-      //todo images
-      images: undefined,
-    },
-  });
-  const selectedValue = watch("categoryId");
-  const selectedgarmentTypesId = watch("garmentTypesId");
-  const selectedsizeCategories = watch("sizeCategoriesId");
-  watch("sizes");
-  watch("inventory");
 
-  const onSizeChange = (size: string) => {
-    const sizes = new Set(getValues("sizes"));
-    sizes.has(size) ? sizes.delete(size) : sizes.add(size);
-    setValue("sizes", Array.from(sizes));
-  };
+    //observadores--
+    selectedValue,
+    selectedgarmentTypesId,
+    selectedsizeCategories,
 
-  const onSizeQuantityChange = (
-    size: string,
-    idInvetory: string,
-    quantity: string
-  ) => {
-    const parsedQuantity = +quantity;
-    if (!isNaN(parsedQuantity)) {
-      setValue(`inventory.${size}`, { idInvetory, quantity: parsedQuantity });
-    }
-  };
-
-  const onSubmit = async (data: FormInputs) => {
-    console.log(data, "data");
-    const formData = new FormData();
-
-    const { images, ...productToSave } = data;
-
-    if (product.id) {
-      formData.append("id", product.id ?? "");
-    }
-
-    formData.append("title", productToSave.title);
-    formData.append("slug", productToSave.slug);
-    formData.append("description", productToSave.description);
-    formData.append("price", productToSave.price.toString());
-    formData.append("inStock", productToSave.inStock.toString());
-    formData.append("sizes", productToSave.sizes.toString());
-    formData.append("tags", productToSave.tags);
-    formData.append("categoryId", productToSave.categoryId);
-    formData.append("subCategoryId", productToSave.subCategoryId);
-    formData.append("gender", productToSave.gender);
-    formData.append("flatProduct", productToSave.flatProduct);
-    formData.append("inventory", JSON.stringify(productToSave.inventory));
-    formData.append("sale", productToSave.sale.toString());
-    formData.append("garmentTypesId", productToSave.garmentTypesId);
-    formData.append("sizeCategoriesId", productToSave.sizeCategoriesId);
-
-    if (images) {
-      for (let i = 0; i < images.length; i++) {
-        formData.append("images", images[i]);
-      }
-    }
-    //TODO AQUI QUEDAMOS 17/02/20224
-    console.log(formData);
-     const { ok, product: productRespond } =  await createupdateProduct(formData);
-
-    if (!ok) {
-      alert("producto no se pudo actualizar ");
-      return;
-    }
-
-    router.replace(`/admind/product/${productRespond?.slug}`);
-  };
+    //funciones
+    onSizeChange,
+    onSizeQuantityChange,
+    onSubmit,
+  } = useProudctFrom({ product });
 
   useEffect(() => {
     let sizes = allSizes.filter(
@@ -494,7 +379,7 @@ export const ProductForm = ({
                   const inventoryProduct = inventory.find(
                     (data) => data.sizes === size.size
                   );
-                  if (inventoryProduct){
+                  if (inventoryProduct) {
                     return (
                       <td
                         className="border border-gray-300 px-4 py-2"
@@ -504,25 +389,29 @@ export const ProductForm = ({
                           className="p-1 rounded border bg-white w-16"
                           value={getValues(`inventory.${size}.quantity`)}
                           onChange={(e) =>
-                            onSizeQuantityChange(size.id, inventoryProduct.id, e.target.value)
+                            onSizeQuantityChange(
+                              size.id,
+                              inventoryProduct.id,
+                              e.target.value
+                            )
                           }
                         />
                       </td>
-                  );
-                  };
+                    );
+                  }
                   return (
                     <td
-                    className="border border-gray-300 px-4 py-2"
-                    key={`${index}_${size}`}
-                  >
-                    <input
-                      className="p-1 rounded border bg-white w-16"
-                      value={getValues(`inventory.${size}.quantity`)}
-                      onChange={(e) =>
-                        onSizeQuantityChange(size.id, "", e.target.value)
-                      }
-                    />
-                  </td>
+                      className="border border-gray-300 px-4 py-2"
+                      key={`${index}_${size}`}
+                    >
+                      <input
+                        className="p-1 rounded border bg-white w-16"
+                        value={getValues(`inventory.${size}.quantity`)}
+                        onChange={(e) =>
+                          onSizeQuantityChange(size.id, "", e.target.value)
+                        }
+                      />
+                    </td>
                   );
                 })}
               </tr>

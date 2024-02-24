@@ -1,5 +1,6 @@
 "use client";
 // todo ojo la talba d dallas  cuando se crea un nueva  se debe recargar asigne los Id
+//todo pasa la primera vez al guardar  despues toca borrar y volver  cargar ojo corregir
 import { deleteProductImage } from "@/actions";
 import { ProductImage } from "@/components";
 import {
@@ -45,10 +46,8 @@ export const ProductForm = ({
   const {
     handleSubmit,
     register,
-    isValid,
     getValues,
-    setValue,
-    watch,
+
 
     //observadores--
     selectedValue,
@@ -379,40 +378,26 @@ export const ProductForm = ({
                   const inventoryProduct = inventory.find(
                     (data) => data.sizes === size.size
                   );
-                  if (inventoryProduct) {
                     return (
                       <td
                         className="border border-gray-300 px-4 py-2"
                         key={`${index}_${size}`}
-                      >
+                      >s
+                        <span>{inventoryProduct?.id ?? '' }</span>
                         <input
                           className="p-1 rounded border bg-white w-16"
                           value={getValues(`inventory.${size}.quantity`)}
+                          type="number"
                           onChange={(e) =>
                             onSizeQuantityChange(
                               size.id,
-                              inventoryProduct.id,
+                              inventoryProduct?inventoryProduct.id:'' ,
                               e.target.value
                             )
                           }
                         />
                       </td>
                     );
-                  }
-                  return (
-                    <td
-                      className="border border-gray-300 px-4 py-2"
-                      key={`${index}_${size}`}
-                    >
-                      <input
-                        className="p-1 rounded border bg-white w-16"
-                        value={getValues(`inventory.${size}.quantity`)}
-                        onChange={(e) =>
-                          onSizeQuantityChange(size.id, "", e.target.value)
-                        }
-                      />
-                    </td>
-                  );
                 })}
               </tr>
             </tbody>

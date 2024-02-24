@@ -3,9 +3,7 @@ import {
   Product,
   ProductImage as ProductWithImage,
 } from "@/components/interfaces";
-import { useRouter } from "next/navigation";
-import router from "next/router";
-import React from "react";
+import { redirect, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 interface FormInputs {
@@ -20,7 +18,7 @@ interface FormInputs {
   categoryId: string;
   subCategoryId: string;
   flatProduct: string;
-  inventory: { [key: string]: { idInvetory: string; quantity: number } };
+  inventory: { [key: string]: { idInvetory: string; quantity: number; size:string  } };
   images?: FileList;
   sale: number;
   garmentTypesId: string;
@@ -43,6 +41,8 @@ export const useProudctFrom = ({ product }: PorpsHook) => {
     getValues,
     setValue,
     watch,
+    reset,
+    resetField
   } = useForm<FormInputs>({
     defaultValues: {
       ...product,
@@ -73,9 +73,23 @@ export const useProudctFrom = ({ product }: PorpsHook) => {
     idInvetory: string,
     quantity: string
   ) => {
+    console.log({size,idInvetory,quantity})
     const parsedQuantity = +quantity;
+    const getDetailSize=getValues(`inventory`);
+    if(getDetailSize[size]?.size==size && parsedQuantity<=0 ){
+     console.log("carlos")
+     setValue("inventory",{})
+      for (const key in getDetailSize) {
+        if (getDetailSize[key].size !== size) {
+          console.log(size,'_',getDetailSize[key].size)
+          setValue(`inventory.${key}`,getDetailSize[key] );
+        }
+      }
+      return;
+    }
+
     if (!isNaN(parsedQuantity)) {
-      setValue(`inventory.${size}`, { idInvetory, quantity: parsedQuantity });
+      setValue(`inventory.${size}`, { idInvetory, quantity: parsedQuantity,size });
     }
   };
 
@@ -117,17 +131,17 @@ export const useProudctFrom = ({ product }: PorpsHook) => {
       alert("producto no se pudo actualizar ");
       return;
     }
+    reset();
+      router.replace(`/admind/product/${productRespond?.slug}`);
 
-    router.replace(`/admind/product/${productRespond?.slug}`);
+
   };
 
   return {
     handleSubmit,
     register,
-    isValid,
     getValues,
-    setValue,
-    watch,
+
 
     //observadores--
     selectedValue,

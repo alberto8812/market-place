@@ -35,10 +35,13 @@ export default async function Home() {
                     <ProductCardHome product={product} key={product.slug} />
                   ))}
                 </div>
+
+
               </div>
             );
         })}
       </div>
+
     </>
   );
 }

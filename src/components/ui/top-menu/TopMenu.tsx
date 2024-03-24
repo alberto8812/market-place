@@ -117,14 +117,8 @@ export const TopMenu: FC<Props> = ({ categoriesSubcategories }) => {
               </div>
             </div>
           </div>
-          {/* <Image
-                  src="/imgs/marketplace-logo.png"
-                  alt='logo shop'
-                  className=' h-16 w-16 md:h-24 md:w-24 lg:h-24 lg:w-24'
-                  width={900}
-                  height={900}
-                 /> */}
-          <div className=" brancName     text-[#f5f5dc]  text-1xl   -translate-x-44 transition duration-75 font-bold  backdrop-blur-md bg-white/30 pl-2 pr-2 rounded-sm">
+
+          <div className=" brancName  text-[#f5f5dc]  text-1xl   -translate-x-44 transition duration-75 font-bold  backdrop-blur-md bg-white/30 pl-2 pr-2 rounded-sm">
             marketplace
           </div>
         </div>

@@ -69,7 +69,6 @@ export const backgroundCard = () => {
   const tl=gsap.timeline({
     scrollTrigger:{
       trigger:BackGroundContainerAnimation,
-      markers:true,
       start:'top top',
       end:'100% 100%',
       scrub:true,

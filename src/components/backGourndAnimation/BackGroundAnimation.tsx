@@ -25,20 +25,20 @@ export const BackGroundAnimation = () => {
       <div className="BackGroundContainer_Animation relative  h-full flex justif-center items-start flex-col pl-8">
 
 
-        <div className="icon2 absolute  w-[70px] h-[70px] opacity-0  left-[8%] top-[100vh] ">
-          <FiShoppingBag  className="backgroundCard w-[70px] h-[70px] text-[#c4b3d5]   " />
+        <div className="icon2 absolute  sm:w-[70px] sm:h-[70px] opacity-0  left-[8%] top-[100vh] ">
+          <FiShoppingBag  className="backgroundCard sm:w-[70px] sm:h-[70px] text-[#c4b3d5]   " />
         </div>
-        <div className="icon3 absolute  w-[70px] h-[70px] opacity-0   left-[3%] top-[100vh]">
-          <RiTShirt2Line  className="backgroundCard  w-[70px] h-[70px] text-[#c4b3d5]   " />
+        <div className="icon3 absolute  sm:w-[70px] sm:h-[70px] opacity-0   left-[3%] top-[100vh]">
+          <RiTShirt2Line  className="backgroundCard  sm:w-[70px] sm:h-[70px] text-[#c4b3d5]   " />
         </div> 
-        <div className="icon4 absolute  w-[70px] h-[70px] opacity-0 left-[8%] top-[100vh]">
-          <SiSpreadshirt  className="backgroundCard  w-[70px] h-[70px] text-[#c4b3d5]   " />
+        <div className="icon4 absolute  sm:w-[70px] sm:h-[70px] opacity-0 left-[8%] top-[100vh]">
+          <SiSpreadshirt  className="backgroundCard  sm:w-[70px] sm:h-[70px] text-[#c4b3d5]   " />
         </div>
-        <div className="icon5 absolute  w-[70px] h-[70px] opacity-0 left-[3%] top-[100vh]">
-          <IoIosTabletPortrait  className="backgroundCard  w-[70px] h-[70px] text-[#c4b3d5]   " />
+        <div className="icon5 absolute  sm:w-[70px] sm:h-[70px] opacity-0 left-[3%] top-[100vh]">
+          <IoIosTabletPortrait  className="backgroundCard  sm:w-[70px] sm:h-[70px] text-[#c4b3d5]   " />
         </div>
-        <div className="icon6 absolute  w-[70px] h-[70px] opacity-0  left-[8%] top-[100vh]">
-          <FaGamepad  className="backgroundCard  w-[70px] h-[70px] text-[#c4b3d5]  " />
+        <div className="icon6 absolute  sm:w-[70px] sm:h-[70px] opacity-0  left-[8%] top-[100vh]">
+          <FaGamepad  className="backgroundCard  sm:w-[70px] sm:h-[70px] text-[#c4b3d5]  " />
         </div>
       </div>
     </div>

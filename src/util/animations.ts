@@ -12,12 +12,11 @@ export const animatioTrantionPages = () => {
     const tl = gsap.timeline();
 
     tl.set(transitionElement, {
-      x: -50,
-      opacity: 0,
-    }).to(transitionElement, {
-      x: 0,
-      opacity: 1,
+      opacity: 0.5,
       duration: 0.8,
+    }).to(transitionElement, {
+      opacity: 1,
+      duration: 1.8,
     });
   }
 };
@@ -72,9 +71,9 @@ export const backgroundCard = () => {
       trigger: BackGroundContainerAnimation,
       start: "top top",
       end: "100% 100%",
-       scrub: true,
-       pin: true,
-       markers: true
+      scrub: true,
+      pin: true,
+     
     },
   });
 
@@ -89,7 +88,7 @@ export const backgroundCard = () => {
   });
 
   tl.to(icon_2BackGround, {
-    y: "-200vh",
+    y: "-350vh",
     duration: 1.5,
   });
 
@@ -99,14 +98,14 @@ export const backgroundCard = () => {
 
   tl.to(icon_3BackGround, {
     opacity: 1,
-    y: "-85vh",
+    y: "-170vh",
     duration: 2,
     rotate: -15,
     scale: 2,
   });
 
   tl.to(icon_3BackGround, {
-    y: "-150vh",
+    y: "-350vh",
     duration: 1.5,
   });
 
@@ -116,14 +115,14 @@ export const backgroundCard = () => {
 
   tl.to(icon_4BackGround, {
     opacity: 1,
-    y: "-65vh",
+    y: "-140vh",
     duration: 6,
     rotate: 15,
     scale: 2,
   });
 
   tl.to(icon_4BackGround, {
-    y: "-100vh",
+    y: "-350vh",
     duration: 3.5,
   });
 
@@ -133,14 +132,14 @@ export const backgroundCard = () => {
 
   tl.to(icon_5BackGround, {
     opacity: 1,
-    y: "-75vh",
+    y: "-110vh",
     duration: 4,
     rotate: -15,
     scale: 2,
   });
 
   tl.to(icon_5BackGround, {
-    y: "-50vh",
+    y: "-350vh",
     duration: 3.5,
   });
 
@@ -148,14 +147,14 @@ export const backgroundCard = () => {
 
   tl.to(icon_6BackGround, {
     opacity: 1,
-    y: "-20vh",
+    y: "-80vh",
     duration: 6,
     rotate: 15,
     scale: 2,
   });
 
   tl.to(icon_6BackGround, {
-    y: "-10vh",
+    y: "-350vh",
     duration: 3.5,
   });
 

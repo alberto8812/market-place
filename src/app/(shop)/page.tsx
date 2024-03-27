@@ -5,12 +5,16 @@ import { titleFont } from "../config/fonts";
 import { getHomeProductsWithImages } from "@/actions";
 import { BackGroundAnimation } from "@/components/backGourndAnimation/BackGroundAnimation";
 
+
+
+
 export default async function Home() {
   const { products: productHome, ok } = await getHomeProductsWithImages();
   //const productPaginateDB= await getPaginatedProductsWithImages();
 
   return (
     <>
+
       <SlideShowImage />
 
       <div className="relative flex flex-col justify-cente items-center overflow-hidden ">
@@ -33,7 +37,10 @@ export default async function Home() {
                 </div>
 
                 <div className=" grid grid-cols-1 sm:grid-cols-3  sm:justify-evenly    p-5   gap-10  items-center justify-center ">
-                  {category.product?.map((product) => (
+      
+  
+     
+                                    {category.product?.map((product) => (
                     <ProductCardHome product={product} key={product.slug} />
                   ))}
                                     {category.product?.map((product) => (
@@ -48,6 +55,7 @@ export default async function Home() {
               </div>
             );
         })}
+   
       </div>
 
     </>

@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 
 import { getPaginatedProductsWithImages } from "@/actions";
 import { Pagination, ProductCardHome, Title } from "@/components";
+import { BackGroundAnimation } from "@/components/backGourndAnimation/BackGroundAnimation";
 
 
 
@@ -39,7 +40,11 @@ export default async function CategoryPage({params,searchParams}:Props) {
 
 
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="relative overflow-hidden">
+
+ 
+    <BackGroundAnimation/>
+    <div className="flex flex-col justify-center items-center relative">
       <div className=" w-full pl-4">
          <Title title={Categorydecode} subtitle={subcategorydecode}/>
       </div>
@@ -56,6 +61,7 @@ export default async function CategoryPage({params,searchParams}:Props) {
       </div>
 
             <Pagination totalPages={getProductCategory?.toltalPage??1}/>
+    </div>
     </div>
   );
 }

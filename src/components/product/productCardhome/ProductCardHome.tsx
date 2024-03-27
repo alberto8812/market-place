@@ -23,8 +23,9 @@ export const ProductCardHome: FC<Props> = ({ product }) => {
 
 
   return (
-    <div className="h-full "  >
-      <div className="relative m-0 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md h-[480px]">
+    <div className="h-full  hover:scale-105  
+    transition-all "  >
+      <div className="relative m-0 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md h-[480px]  ">
         <div className="relative mx-3 mt-3  h-80 flex overflow-hidden rounded-xl bg-slate-400 ">
           <Link href={`/product/${product.slug}`}>
             <ProductImage

@@ -38,7 +38,7 @@ export const BackGroundAnimation = () => {
           <FiShoppingBag  className="backgroundCard w-[70px] h-[70px] text-[#c4b3d5]   " />
         </div>
   
-        <div className="icon3 absolute  sm:w-[70px] sm:h-[70px] opacity-1   left-[3%] top-full">
+        <div className="icon3 absolute  sm:w-[70px] sm:h-[70px] opacity-0   left-[3%] top-full">
           <RiTShirt2Line  className="backgroundCard  sm:w-[70px] sm:h-[70px] text-[#c4b3d5]   " />
         </div> 
         <div className="icon4 absolute  sm:w-[70px] sm:h-[70px] opacity-0 left-[8%] top-full">

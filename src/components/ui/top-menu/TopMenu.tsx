@@ -17,6 +17,8 @@ import { FC, useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { animationPageIn } from "@/util/animations";
 
+
+
 interface SubCategory {
   id: string;
   name: string;
@@ -50,6 +52,7 @@ export const TopMenu: FC<Props> = ({ categoriesSubcategories }) => {
   });
 
   return (
+     
     <nav className="flex flex-col justify-between items-center w-full bg-[rgba(245,245,245,255)]">
       <div className="flex px-5 justify-between items-center w-full pb-5 pt-2 bg-color-company">
         <div className="m-1 p-1 rounded-md transition-all hover:bg-[#896bab] text-white">
@@ -174,5 +177,6 @@ export const TopMenu: FC<Props> = ({ categoriesSubcategories }) => {
         </div>
       </div>
     </nav>
+    
   );
 };

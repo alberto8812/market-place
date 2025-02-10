@@ -15,15 +15,13 @@ import { IoHeart } from "react-icons/io5";
 import { AddToCart } from "./ui/AddToCart";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata(props: Props, parent: ResolvingMetadata): Promise<Metadata> {
+  const params = await props.params;
   // read route params
   const slug = params.slug;
 
@@ -42,7 +40,8 @@ export async function generateMetadata(
   };
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
   const getProduct = await getProductBySlug(slug);
 

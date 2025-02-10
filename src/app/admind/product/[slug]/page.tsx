@@ -11,12 +11,13 @@ import { ProductForm } from "./ui/ProductFrom";
 import { Size, SizeCategory } from "@/components/interfaces";
 
 interface Props {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage(props: Props) {
+  const params = await props.params;
   const { slug } = params;
 
   const [product, getCategories, AllSizeCategoryGramentType,Sizes] =
@@ -27,7 +28,7 @@ export default async function ProductPage({ params }: Props) {
       getAllSizes(),
     ]);
 
-    const {sizeCategory, garmentType }=AllSizeCategoryGramentType;
+  const {sizeCategory, garmentType }=AllSizeCategoryGramentType;
 
   // todu: new
 

@@ -9,12 +9,13 @@ import { getPaginatedAllProductsWithImages } from "@/actions";
 import { currencyFormat } from "@/util";
 
 interface Props {
-  searchParams:{
+  searchParams: Promise<{
     page?:string;
-  }
+  }>
 }
 
-export default async function AdmindOrders({searchParams}:Props) {
+export default async function AdmindOrders(props:Props) {
+  const searchParams = await props.searchParams;
   const page = searchParams.page ? parseInt(searchParams.page) : 1;
 
   const { products, currentPage, totalPages } =await getPaginatedAllProductsWithImages({ page });

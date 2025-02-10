@@ -9,19 +9,21 @@ import { BackGroundAnimation } from "@/components/backGourndAnimation/BackGround
 
 
 interface Props{
-  params:{
+  params: Promise<{
     category:string;
     
-  },
-  searchParams:{
+  }>,
+  searchParams: Promise<{
     page?:string
-  }
+  }>
 
 }
 
 
 
-export default async function CategoryPage({params,searchParams}:Props) {
+export default async function CategoryPage(props:Props) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const {category}=params;
   const page=searchParams.page? parseInt(searchParams.page):1;
   const getProductCategory= await getPaginatedProductsWithImages({page,category});
@@ -30,12 +32,12 @@ export default async function CategoryPage({params,searchParams}:Props) {
   const Categorydecode=decodeURIComponent(categoryName);
   const subcategorydecode=decodeURIComponent(subcategoryName);
 
-  
 
 
-   if(getProductCategory?.products.length===0){
-    redirect(`/category/${ category }`);
-   }
+
+  if(getProductCategory?.products.length===0){
+   redirect(`/category/${ category }`);
+  }
 
 
 

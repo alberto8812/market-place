@@ -9,12 +9,13 @@ import { IspaidComponent } from "./ui/IspaidComponent";
 
 
 interface Props {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
-export default async function OrdersIdPage({ params }: Props) {
+export default async function OrdersIdPage(props: Props) {
+  const params = await props.params;
   const { id } = params;
   const { ok, order } = await getOrderById(id);
   //llmar el server action

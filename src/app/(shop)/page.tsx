@@ -4,6 +4,7 @@ import { ProductCardHome } from "@/components/product/productCardhome/ProductCar
 import { titleFont } from "../config/fonts";
 import { getHomeProductsWithImages } from "@/actions";
 import { BackGroundAnimation } from "@/components/backGourndAnimation/BackGroundAnimation";
+import { DrawerDemo } from "@/components/product/dRAWERproduct/DrawerProduct";
 
 export default async function Home() {
   const { products: productHome, ok } = await getHomeProductsWithImages();
@@ -46,6 +47,12 @@ export default async function Home() {
               </div>
             );
         })}
+        <div className="flex justify-center items-center">
+          <div className="w-80 justify-center flex  bg-gray-400 items-center">
+            <DrawerDemo />
+            <hr className="bg-gray-400 h-1" />
+          </div>
+        </div>
       </div>
     </>
   );
